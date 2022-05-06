@@ -1,0 +1,21 @@
+# Rockwell Schrock
+## Maker of things
+
+## Fun Projects
+
+=> projects/gemserv Self-hosting with gemserv
+=> projects/meshtastic Messing with Meshtastic
+
+## Current Engagements
+
+=> https://dockyard.com DockYard - Senior Software Engineer
+=> https://www.remotehamradio.com RemoteHamRadio - get on the air from anywhere
+=> https://www.ww1x.com/sotagoat/ SOTA Goat for iOS - utility app for ham radio operators
+
+## Around the Web
+
+=> https://www.ww1x.com WW1X.com
+=> https://twitter.com/schrockwell Twitter
+=> https://youtube.com/schrockwell YouTube
+=> https://github.com/schrockwell GitHub
+=> https://dnc.show Does Not Compute podcast
