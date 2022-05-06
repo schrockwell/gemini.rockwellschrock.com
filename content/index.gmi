@@ -1,21 +1,28 @@
 # Rockwell Schrock
-## Maker of things
 
-## Fun Projects
+Maker of things.
+
+## Fun Distractions
 
 => projects/gemserv Self-hosting with gemserv
 => projects/meshtastic Messing with Meshtastic
 
-## Current Engagements
+## Employment
 
 => https://dockyard.com DockYard - Senior Software Engineer
 => https://www.remotehamradio.com RemoteHamRadio - get on the air from anywhere
+
+## "Completed" Projects
+
 => https://www.ww1x.com/sotagoat/ SOTA Goat for iOS - utility app for ham radio operators
+=> https://morsle.fun Morsle - the daily Morse code challenge
 
 ## Around the Web
 
+=> https://www.rockwellschrock.com rockwellschrock.com
 => https://www.ww1x.com WW1X.com
 => https://twitter.com/schrockwell Twitter
 => https://youtube.com/schrockwell YouTube
 => https://github.com/schrockwell GitHub
+=> https://www.printables.com/social/229042-schrockwell/models Printables
 => https://dnc.show Does Not Compute podcast
