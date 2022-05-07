@@ -1,29 +1,43 @@
 # Rockwell Schrock
 
-Maker of things.
+```"create." text banner
+                     _
+  ___ _ __ ___  __ _| |_ ___
+ / __| '__/ _ \/ _` | __/ _ \
+| (__| | |  __/ (_| | ||  __/_
+ \___|_|  \___|\__,_|\__\___(_)
+
+```
 
 
 ## Fun Distractions
+=> projects/gemserv 🖥 Self-hosting with gemserv
+=> projects/meshtastic 📡 Messing with Meshtastic
 
-=> projects/gemserv Self-hosting with gemserv
-=> projects/meshtastic Messing with Meshtastic
 
 ## Employment
+=> https://dockyard.com DockYard
+Senior Software Engineer
 
-=> https://dockyard.com DockYard - Senior Software Engineer
-=> https://www.remotehamradio.com RemoteHamRadio - get on the air from anywhere
+=> https://www.remotehamradio.com RemoteHamRadio
+Get on the air from anywhere
+
 
 ## "Completed" Projects
+=> https://morsle.fun Morsle
+The daily Morse code challenge
 
-=> https://www.ww1x.com/sotagoat/ SOTA Goat for iOS - utility app for ham radio operators
-=> https://morsle.fun Morsle - the daily Morse code challenge
+=> https://www.ww1x.com/sotagoat/ SOTA Goat for iOS
+A utility app for ham radio operators
 
-## Around the Web
 
-=> https://www.rockwellschrock.com rockwellschrock.com
-=> https://www.ww1x.com WW1X.com
-=> https://twitter.com/schrockwell Twitter
-=> https://youtube.com/schrockwell YouTube
-=> https://github.com/schrockwell GitHub
-=> https://www.printables.com/social/229042-schrockwell/models Printables
-=> https://dnc.show Does Not Compute podcast
+## Around the 'Net
+=> gemini://station.martinrue.com/schrockwell 🛰 Station
+
+=> https://www.rockwellschrock.com 🏠 rockwellschrock.com
+=> https://www.ww1x.com 📻 WW1X.com
+=> https://twitter.com/schrockwell 🐥 Twitter
+=> https://youtube.com/schrockwell 🎥 YouTube
+=> https://github.com/schrockwell 🐙 GitHub
+=> https://www.printables.com/social/229042-schrockwell/models 🖨 Printables
+=> https://dnc.show 🎙 Does Not Compute

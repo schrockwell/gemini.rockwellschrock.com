@@ -2,7 +2,7 @@
 
 This capsule is self-hosted on a DigitalOcean instance running Ubuntu 20.04 LTS.
 
-I wrote a few scripts in Ruby to help install gemserv, make certificates, and setup additional virtual hosts.
+There are a few Ruby scripts that install gemserv and set up new virtual hosts with user access to those hosts' directories.
 
-=> https://github.com/schrockwell/gemserv-admin gemserv-admin setup scripts
-=> https://github.com/schrockwell/gemini.rockwellschrock.com The content for this site
+=> https://github.com/schrockwell/gemserv-admin gemserv setup scripts
+=> https://github.com/schrockwell/gemini.rockwellschrock.com This site's content
