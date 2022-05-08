@@ -1,5 +1,3 @@
-# Rockwell Schrock
-
 ```"create." text banner
                      _
   ___ _ __ ___  __ _| |_ ___
@@ -9,21 +7,16 @@
 
 ```
 
-
-## Fun Distractions
+## Latest Distractions
 => projects/gemserv 🖥 Self-hosting with gemserv
 => projects/meshtastic 📡 Messing with Meshtastic
-
-
-## Employment
-=> https://dockyard.com DockYard
-Senior Software Engineer
-
-=> https://www.remotehamradio.com RemoteHamRadio
-Get on the air from anywhere
+=> projects/morsle 🔊 Morsle
 
 
 ## "Completed" Projects
+=> https://www.remotehamradio.com RemoteHamRadio
+Get on the air from anywhere
+
 => https://morsle.fun Morsle
 The daily Morse code challenge
 
