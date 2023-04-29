@@ -12,6 +12,8 @@
 => projects/meshtastic 📡 Messing with Meshtastic
 => projects/morsle 🔊 Morsle
 
+## Posts
+=> posts/2023-04-17-making-dbg-useful.gmi 2023-04-17 — Making dbg/2 useful in IEx
 
 ## "Completed" Projects
 => https://www.remotehamradio.com RemoteHamRadio
