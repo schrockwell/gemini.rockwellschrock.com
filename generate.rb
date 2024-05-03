@@ -158,8 +158,8 @@ WEB_OUTPUT_DIR = '_site'
 GEMINI_INPUT_DIR = 'gemini'
 GEMINI_OUTPUT_DIR = '_capsule'
 LAYOUT_PATH = WEB_INPUT_DIR + "/_layout.html"
-GEMINI_HOST = 'gemini://gmi.rockwellschrock.com/'
-WEB_HOST = 'https://www.rockwellschrock.com/'
+GEMINI_HOST = 'gemini://gmi.schrockwell.com/'
+WEB_HOST = 'https://www.schrockwell.com/'
 SITE_TITLE = 'Rockwell Schrock'
 
 def build_web_site
