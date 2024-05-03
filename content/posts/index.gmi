@@ -1,0 +1,17 @@
+# Posts
+
+## 2023
+
+=> /posts/2023-04-29-gemtext-to-html.gmi 2023-04-29 [Elixir] gemtext_to_html v0.1.0
+=> /posts/2023-04-17-making-dbg-useful.gmi 2023-04-17 [Elixir] Making dbg/2 useful in IEx
+=> /posts/2023-04-01-morsle-anniversary.gmi 2023-04-01 [Web] One year of Morsle
+=> /posts/2023-03-06-abusing-elixir-classes.gmi 2023-03-06 [Elixir] Abusing Elixir: Classes
+=> /posts/2023-03-05-abusing-elixir-equality.gmi 2023-03-05 [Elixir] Abusing Elixir: JS equality
+=> /posts/2023-03-04-the-indomitable-message-type.gmi 2023-03-04 [Dev] The indomitable message type
+=> /posts/2023-02-11-text-adventures-with-direnv.gmi 2023-02-11 [Dev] Text adventures with direnv
+
+## 2022
+
+=> /posts/2022-05-06-gemserv.gmi 2022-05-05 [Gemini] Self-hosting with gemserv
+=> /posts/2022-05-04-meshtastic.gmi 2022-05-04 [LoRa] Long-distance communication with Meshtastic
+=> /posts/2022-04-01-morsle.gmi 2022-04-01 [Web] Introducing Morsle

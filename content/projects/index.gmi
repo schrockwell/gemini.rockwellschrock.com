@@ -1,0 +1,15 @@
+# Projects
+
+## Software
+
+=> https://www.remotehamradio.com/ Remote Ham Radio (2010-) - Get on the air from anywhere!
+=> https://ww1x.radio/sotagoat/ SOTA Goat (2012-) - Summits on the Air companion app for iOS
+
+## Code
+
+=> #todo rockwellschrock.com (2024-) - This site/capsule, simulcast to the Web and Gemini
+=> https://github.com/schrockwell/bodyguard Bodyguard (2016-) - A simple, flexible authorization library for Elixir
+
+## Media
+
+=> https://dnc.show/ Does Not Compute (2020-2022) - A weekly development podcast

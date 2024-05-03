@@ -152,19 +152,22 @@ def find_first_heading(tokens, default="Untitled")
   heading ? heading[:text] : default
 end
 
-GEMINI_INPUT_DIR = 'gemini'
+CONTENT_INPUT_DIR = 'content'
 WEB_INPUT_DIR = 'web'
-SITE_OUTPUT_DIR = '_site'
+WEB_OUTPUT_DIR = '_site'
+GEMINI_INPUT_DIR = 'gemini'
+GEMINI_OUTPUT_DIR = '_capsule'
 LAYOUT_PATH = WEB_INPUT_DIR + "/_layout.html"
 GEMINI_HOST = 'gemini://gemini.rockwellschrock.com/'
+WEB_HOST = 'https://rockwellschrock.com/'
 SITE_TITLE = 'Rockwell Schrock'
 
-def process_site(path)
+def build_web_site
   count = 0
-  FileUtils.rm_rf(SITE_OUTPUT_DIR)
+  FileUtils.rm_rf(WEB_OUTPUT_DIR)
 
   # Recursively process all files in the /content directory and output to /html
-  Dir.glob("#{path}/**/*").each do |file|
+  Dir.glob("#{CONTENT_INPUT_DIR}/**/*").each do |file|
     if File.file?(file)
       if file.end_with?(".gmi")
         gemtext = File.read(file)
@@ -172,17 +175,17 @@ def process_site(path)
         title = find_first_heading(tokens).dup
         title << " - #{SITE_TITLE}" unless title == SITE_TITLE
         
-        gemini_url = GEMINI_HOST + file.gsub(GEMINI_INPUT_DIR, "")
+        gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "")
         layout = File.read(LAYOUT_PATH)
         html = render_template(layout, { title: title, content: render_html(tokens), gemini_url: gemini_url})
 
-        html_path = file.gsub(GEMINI_INPUT_DIR, SITE_OUTPUT_DIR).gsub(".gmi", ".html")
+        html_path = file.gsub(CONTENT_INPUT_DIR, WEB_OUTPUT_DIR).gsub(".gmi", ".html")
         dir = File.dirname(html_path)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         File.write(html_path, html)
         count += 1
       else
-        out_file = file.gsub(GEMINI_INPUT_DIR, SITE_OUTPUT_DIR)
+        out_file = file.gsub(CONTENT_INPUT_DIR, WEB_OUTPUT_DIR)
         dir = File.dirname(out_file)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         FileUtils.cp(file, out_file)
@@ -194,7 +197,7 @@ def process_site(path)
   # Copy everything from /web to /_site, except if the file starts with an underscore
   Dir.glob("#{WEB_INPUT_DIR}/**/*").each do |file|
     if File.file?(file)
-      out_file = file.gsub(WEB_INPUT_DIR, SITE_OUTPUT_DIR)
+      out_file = file.gsub(WEB_INPUT_DIR, WEB_OUTPUT_DIR)
       dir = File.dirname(out_file)
       FileUtils.mkdir_p(dir) unless File.directory?(dir)
       FileUtils.cp(file, out_file)
@@ -205,9 +208,44 @@ def process_site(path)
   count
 end
 
+def build_gemini_capsule
+  count = 0
+  # Apply gemini/_layout.gmi to all files in /content
+  FileUtils.rm_rf(GEMINI_OUTPUT_DIR)
+
+  Dir.glob("#{CONTENT_INPUT_DIR}/**/*").each do |file|
+    layout = File.read(GEMINI_INPUT_DIR + "/_layout.gmi")
+
+    if File.file?(file)
+      if file.end_with?(".gmi")
+        web_url = WEB_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub(".gmi", ".html")
+        gemtext = File.read(file)
+        gemini = render_template(layout, { content: gemtext, web_url: web_url })
+
+        gemini_path = file.gsub(CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
+        dir = File.dirname(gemini_path)
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+        File.write(gemini_path, gemini)
+        count += 1
+      else
+        out_file = file.gsub(CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
+        dir = File.dirname(out_file)
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+        FileUtils.cp(file, out_file)
+        count += 1
+      end
+    end
+  end
+
+  count
+end
+
 if $PROGRAM_NAME == __FILE__
-  count = process_site(GEMINI_INPUT_DIR)
-  puts "Generated #{count} files"
+  count = build_web_site
+  puts "Generated Web site with #{count} files"
+
+  count = build_gemini_capsule
+  puts "Generated Gemini site with #{count} files"
 
   if ARGV[0] == 'server'
     Signal.trap("INT") { exit }
@@ -215,11 +253,16 @@ if $PROGRAM_NAME == __FILE__
     # Start a file system watcher to regenerate the site on changes (fork)
     Process.fork do
       Signal.trap("INT") { exit }
-      system("fswatch -o #{GEMINI_INPUT_DIR} #{WEB_INPUT_DIR} | xargs -n1 -I{} ruby generate.rb")
+      system("fswatch -o #{CONTENT_INPUT_DIR} #{WEB_INPUT_DIR} | xargs -n1 -I{} ruby generate.rb")
+    end
+
+    # Start agate server in gemini folder
+    Process.fork do
+      Signal.trap("INT") { exit }
+      system("agate --hostname localhost --content #{GEMINI_OUTPUT_DIR}")
     end
     
     # Start web server in html folder
     system("ruby -run -e httpd _site -p 8000")
-
   end
 end
