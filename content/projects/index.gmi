@@ -7,8 +7,8 @@
 
 ## Code
 
-=> #todo rockwellschrock.com (2024-) - This site/capsule, simulcast to the Web and Gemini
 => https://github.com/schrockwell/bodyguard Bodyguard (2016-) - A simple, flexible authorization library for Elixir
+=> /posts/2024-05-03-new-site.gmi schrockwell.com (2024-) - This site/capsule, simulcast to the Web and Gemini
 
 ## Media
 

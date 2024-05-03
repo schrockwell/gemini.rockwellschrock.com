@@ -21,3 +21,5 @@ I have two cats and the best wife ever.
 This site is simulcast on the World Wide Web (deprecated) and Geminispace. 
 
 The web version of the site is statically generated from Gemtext with a Ruby script.
+
+=> /posts/2024-05-03-new-site.gmi Learn more about the site's design
