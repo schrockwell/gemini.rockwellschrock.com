@@ -181,7 +181,7 @@ def build_web_site
         title = find_first_heading(tokens).dup
         title << " - #{SITE_TITLE}" unless title == SITE_TITLE
         
-        gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "")
+        gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub("/index.gmi", "/")
         layout = File.read(LAYOUT_PATH)
         html = render_template(layout, { title: title, content: render_html(tokens), gemini_url: gemini_url})
 
@@ -224,7 +224,7 @@ def build_gemini_capsule
 
     if File.file?(file)
       if file.end_with?(".gmi")
-        web_url = WEB_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub(".gmi", ".html")
+        web_url = WEB_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub(".gmi", ".html").gsub("/index.html", "/")
         gemtext = File.read(file)
         gemini = render_template(layout, { content: gemtext, web_url: web_url })
 
