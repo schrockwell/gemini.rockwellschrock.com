@@ -1,0 +1,17 @@
+[[redirects]]
+from = "https://rockwellschrock.com/*"
+to = "https://www.schrockwell.com/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://www.rockwellschrock.com/*"
+to = "https://www.schrockwell.com/:splat"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://schrockwell.com/*"
+to = "https://www.schrockwell.com/:splat"
+status = 301
+force = true
