@@ -1,0 +1,28 @@
+# Morsle
+
+April 1, 2022
+
+It started as a joke of an idea.
+
+> What if someone did Wordle, but for Morse code?
+
+Ten days of hyperfocus later, it was live.
+
+=> https://morsle.fun
+
+## The stack
+The application is a statically-generated NuxtJS application hosted on Netlify.
+
+Vue 3 is having a lot of trouble gaining traction, and I'm not sure how I feel about the new API, so I was happy to discover that the latest version of Nuxt was still on Vue 2. That's what I know best, and I can be insanely productive with it.
+
+The Morse code generation is handled by jscwlib, lovingly maintained by Fabin DJ5CW. This is the same library that is used by LCWO.net (Learn CW Online), so I could trust that it was battle-tested and up-to-date with modern browsers.
+
+There's no server component to the application. Everything is served up statically, and the player stats are persisted to Local Storage. It's not an ideal solution, but I really did not want to deal with any extra infrastructure for this silly project.
+
+Analytics are handled by Plausible.io. It took literally 15 minutes to integrate, it captures exactly what I need to and nothing more (e.g. how many people play the game, how often they win, at what speeds, etc), it respects the privacy of the visitors, and the stats are even public! Link below.
+
+=> https://nuxtjs.org Nuxt
+=> https://vuejs.org Vue
+=> https://www.netlify.com Netlify
+=> https://fkurz.net/ham/jscwlib.html jscwlib
+=> https://plausible.io/morsle.fun Plausible.io analytics

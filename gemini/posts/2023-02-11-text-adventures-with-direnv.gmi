@@ -1,0 +1,50 @@
+# Text adventures with direnv
+
+February 11, 2023
+
+If you use direnv to configure your local development environment, you might run into a situation where one set of environment variables does not cut it.
+
+=> https://direnv.net
+
+For example, a front-end JS application might need to connect to number of different server environments, such as local development, staging, or production.
+
+Here's a little secret: **.envrc is just a shell script**. There's nothing magic about it.
+
+Armed with that knowledge, here's an iteration of `.envrc` that prompts the user for the environment when switching into the project directory:
+
+```sh
+# .envrc
+export COMMON_ENV=here
+
+echo -n "Configure [d]evelopment, [s]taging, or [p]roduction? "
+read
+
+case $REPLY in 
+  p)
+    echo 'Configuring production environment'
+    export BASE_URL=https://example.com
+    ;;
+  s)
+    echo 'Configuring staging environment'
+    export BASE_URL=https://staging.example.com
+    ;;
+  *)
+    echo 'Configuring development environment'
+    export BASE_URL=http://localhost:4000
+    ;;
+esac
+```
+
+Now, when you `cd` into the project directory:
+
+```sh
+❯ cd myapp
+direnv: loading ~/myapp/.envrc
+Configure [d]evelopment, [s]taging, or [p]roduction? d
+Configuring development environment
+direnv: export +COMMON_ENV +BASE_URL
+```
+
+Just don't enter the wrong input, or you might be eaten by a grue
+
+=> https://en.wikipedia.org/wiki/Grue_(monster) Grue

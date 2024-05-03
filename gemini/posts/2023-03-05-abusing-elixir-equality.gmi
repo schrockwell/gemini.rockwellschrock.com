@@ -1,0 +1,84 @@
+# Abusing Elixir: JS equality
+
+March 5, 2023
+
+Do you find the `==` operator _too strict_? Do you often dream of two values being equal even though they are completely different types, or of maps being equal to absolutely nothing?
+
+Thankfully, Elixir lets us un-import `Kernel.==/2` and define our own.
+
+```elixir
+defmodule JSEquality do
+  def a == b, do: equal?(a, b) or equal?(b, a)
+  def a != b, do: not __MODULE__.==(a, b)
+
+  def a === b, do: strictly_equal?(a, b) or strictly_equal?(b, a)
+  def a !== b, do: not __MODULE__.===(a, b)
+
+  defp equal?(1, x) when x in [true, 1], do: true
+  defp equal?(0, x) when x in [false, 0], do: true
+  defp equal?("1", x) when x in [true, 1, "1"], do: true
+  defp equal?("0", x) when x in [false, 0, "0"], do: true
+  defp equal?("", x) when x in [false, 0, ""], do: true
+  defp equal?(:undefined, x) when x in [nil, :undefined], do: true
+  defp equal?(:Infinity, :Infinity), do: true
+  defp equal?(:negative_Infinity, :negative_Infinity), do: true
+  defp equal?([], x) when x in [false, 0, ""], do: true
+  defp equal?([[]], x) when x in [false, 0, ""], do: true
+  defp equal?([0], x) when x in [false, 0, "0"], do: true
+  defp equal?([1], x) when x in [true, 1, "1"], do: true
+  defp equal?(:NaN, _), do: false
+
+  defp equal?(int, x) when is_integer(int),
+    do: Kernel.==(int, x) or Kernel.==(Integer.to_string(int), x)
+
+  defp equal?(list, _) when is_list(list), do: false
+  defp equal?(map, _) when is_map(map), do: false
+  defp equal?(x, x), do: true
+  defp equal?(_, _), do: false
+
+  defp strictly_equal?(list, _) when is_list(list), do: false
+  defp strictly_equal?(map, _) when is_map(map), do: false
+  defp strictly_equal?(:NaN, _), do: false
+  defp strictly_equal?(x, x), do: true
+  defp strictly_equal?(_, _), do: false
+end
+```
+
+And, in use:
+
+```elixir
+iex> import Kernel, except: [==: 2, !=: 2, ===: 2, !==: 2]
+Kernel
+iex> import JSEquality
+JSEquality
+iex> "hello" == "hello"
+true
+iex> "hello" == :world
+false
+iex> :undefined == nil
+true
+iex> "1" == [1]
+true
+iex> %{} == %{}
+false
+iex> false == "0"
+true
+iex> [] == []
+false
+iex> [[]] == false
+true
+iex> "" == 0      
+true
+iex> -123 == "-123"
+true
+iex> :NaN == :NaN
+false
+iex> "foo" === "foo"
+true
+iex> -1 === "-1"
+false
+iex> [] === []
+false
+```
+
+=> https://dorey.github.io/JavaScript-Equality-Table/ JavaScript equality table

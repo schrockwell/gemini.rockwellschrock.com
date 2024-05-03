@@ -1,0 +1,110 @@
+# The indomitable message type
+
+March 4, 2023
+
+When I first started building Remote Ham Radio in 2012, WebSockets were less than a year out of RFC proposal, but they were already the clear future for developing realtime experiences in the browser.
+
+=> https://www.remotehamradio.com Remote Ham Radio
+=> https://datatracker.ietf.org/doc/rfc6455/ RFC 6455
+
+WebSockets are bidirectional streams of data, conveniently packetized into individual messages for ease of sending and receiving.
+
+So, what's the content of those messages? WebSockets leave that as an exercise for the developer.
+
+## First contact
+
+On September 21, 2012 at 1:49am (!), the first commit was made to the RHR server repository. It contained the Ruby `Message` class.
+
+```ruby
+class Message
+  attr_accessor :id, :type, :info
+end
+```
+
+Serialized to JSON, this simple data structure would go on to endure the lifetime of RHR, largely unchanged. It enabled the application to scale from a tech demo to a distributed pub-sub message broker that pushes millions of message per hour.
+
+This message format is not a groundbreaking concept. In fact, I didn't even come up with it. The original source is a Gist by Ismael Celis. The `FancyWebSocket` class survived in the client codebase for many years. And why not? It just worked.
+
+=> https://gist.github.com/ismasan/299789/ab8fc0daea1aab67e504c14423d9dc1301485bc9 Gist by Ismael Celis
+=> https://ismaelcelis.com Ismael Celis
+
+### Here's the spec
+
+Those three fields – `id`, `type`, and `info` – are the real MVP. In both senses.
+
+=> https://en.wikipedia.org/wiki/Most_valuable_player MVP
+=> https://en.wikipedia.org/wiki/Minimum_viable_product MVP
+
+```json
+{"id": "rotor123", "type": "move", "info": {"heading": 45}}
+```
+
+The `id` determines which server component the message is destined to (or from), the `type` indicates the shape of the message, and `info` is an arbitrary map/dict/hash/object payload whose contents are based on the message `type`.
+
+Early on, each user client had a dedicated WebSocket connection to each remote station. As the service grew, this scheme did not scale, so a central server was established to forward messages between the clients and the servers. This necessitated two additional fields, `user_id` and `site_id`, so that messages could be routed through the central hub.
+
+Five fields in a JSON object. That's it – that's the whole API. 
+
+## Pros
+
+### Schemaless
+
+There is no schema definition, but that's manageable for a single-developer team. It enables rapid development of new message types across the two or three repos requried to plumb everything together.
+
+It also makes gradual deployments easier, as clients do not have to agree on a common schema version. As a tradeoff, clients must ignore unexpected message types, and provide default values for new fields that might not be fully deployed yet.
+
+### Portable
+
+It's a portable format, in the sense that an individual message can be easily moved across several layers of the application. It works in Ruby, it works in JS, and it's survived the transition between _five_ different message brokers – first peer-to-peer WebSockets, then Ruby, then RabbitMQ, then Redis, and now Elixir.
+
+### Ingest-able
+
+As a corollary, it's extremely easy to get messages into the system. Some clients communicate via an HTTP API instead of a WebSocket, and they can take advantage of the same message format by POSTing a message to a single HTTP endpoint.
+
+## Room for improvement
+
+### A schema
+
+A proper JSON schema would be nice, to prevent malformed messages from propagating too far into the system. Documentation would be a beneficial side-effect, as there is currently no single source of truth for the 100+ message types. This becomes much more valuable when *Developer 2 has entered the chat*.
+
+### Synchronous requests
+
+Messages are fire-and-forget, and there is no concept of a transaction or an acknowledement that a particular message has been handled. That's fine, as the async model is particularly well-suited for interacting with physical devices.
+
+Hardware will emit unsolicited messages when its state changes, often it's slow to respond to requests, and sometimes you trip over a cord and suddenly it doesn't respond at all. Don't forget, there's a 4,800 baud serial device on the other end of that Gigabit connection. 
+
+In the end, it's easier for a client to fire off a message and pray that it receives an expected response in the future.
+
+The downside is that clients can resemble a plate of spaghetti, where the sending of a request is completely decoupled from the handling of the response. This is a pain for actions that are truly transactional in nature, so this protocol could be improved to optionally support an ACK/NACK scheme for those cases.
+
+=> https://en.wikipedia.org/wiki/Spaghetti_code Spaghetti code
+=> https://en.wikipedia.org/wiki/Acknowledgement_(data_networks) ACK/NACK
+
+### Binary format
+
+JSON is not the lightest format, but it is human-readible! And as a human, I appreciate that. 
+
+The application has not reached a scale where bandwidth has become costly or otherwise a limiting factor in its growth, so JSON continues to reign. Phoenix already applies gzip compression to WebSockets, which is Good Enough. A binary message format could be considered in the future, trading off bandwidth for additional complexity and CPU.
+
+=> https://hexdocs.pm/phoenix/Phoenix.Endpoint.html#socket/3-websocket-configuration gzip compression in Phoenix WebSockets
+=> https://www.lucidchart.com/techblog/2019/12/06/json-compression-alternative-binary-formats-and-compression-methods/ Binary message format
+
+### URIs
+
+It's interesting to consider unifying the `user_id`, `site_id`, `id`, and `type` fields into a single `uri` field.
+
+```
+rhr://user_id@site_id/id/type
+```
+
+I'm not sure what advantage this would provide, but it looks neat.
+
+## Building the "right thing"
+
+Growing codebases eventually meet a point where their initial assumptions are challenged. External pressures like cost, complexity, security, and features creep in over time – that's a given. So when beginning a project, it's tempting to try to build the "right thing" from the start. That's the heart of the second-system effect.
+
+=> https://en.wikipedia.org/wiki/Second-system_effect Second-system effect
+
+However, the ability to completely reshape a product over time is one of the great affordances we have as developers. By recognizing that we don't have complete knowledge of current and future requirements, usually the best option is to build the simplest solution.
+
+Sometimes, it might just be fancy enough.

@@ -1,0 +1,64 @@
+# Abusing Elixir: Classes
+
+March 6, 2023
+
+Is immutability dragging you down? Despite what the docs claim, Elixir isn't a _real_ functional language. We can mutate state whenever we want!
+
+```elixir
+defmodule Car do
+  defstruct [:gear, :rpm, :speed, :shift, :dealloc]
+
+  # Constructor
+  def new do
+    state = %{
+      gear: 1,
+      rpm: 1000
+    }
+
+    {:ok, agent} = Agent.start(fn -> state end)
+
+    %__MODULE__{
+      # Properties
+      gear: fn -> Agent.get(agent, & &1.gear) end,
+      rpm: fn -> Agent.get(agent, & &1.rpm) end,
+      # Read-only property
+      speed: fn -> Agent.get(agent, &(&1.gear * &1.rpm)) end,
+      # Method
+      shift: fn diff ->
+        Agent.update(agent, fn state ->
+          Map.update!(state, :gear, &(&1 + diff))
+        end)
+      end,
+      # Destructor
+      dealloc: fn -> Agent.stop(agent) end
+    }
+  end
+end
+```
+
+And, in "use":
+
+```elixir
+iex(1)> car = Car.new()
+%Car{
+  gear: #Function<3.34229322/0 in Car.new/0>,
+  rpm: #Function<4.34229322/0 in Car.new/0>,
+  shift: #Function<2.34229322/1 in Car.new/0>,
+  speed: #Function<5.34229322/0 in Car.new/0>,
+  dealloc: #Function<6.34229322/0 in Car.new/0>
+}
+iex(2)> car.gear.()
+1
+iex(3)> car.shift.(1)
+:ok
+iex(4)> car.gear.()
+2
+iex(5)> car.speed.()
+2000
+iex(6)> car.dealloc.()
+:ok
+iex(7)> car.gear.()
+** (exit) exited in: GenServer.call(#PID<0.189.0>, {:get, #Function<9.34229322/1 in Car.new/0>}, 5000)
+    ** (EXIT) no process: the process is not alive or there's no process currently associated with the given name, possibly because its application isn't started
+    (elixir 1.14.0) lib/gen_server.ex:1038: GenServer.call/3
+```

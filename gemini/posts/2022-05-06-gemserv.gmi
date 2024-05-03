@@ -1,0 +1,10 @@
+# Self-hosting with germserv
+ 
+May 6, 2022
+
+This capsule is self-hosted on a DigitalOcean instance running Ubuntu 20.04 LTS.
+
+There are a few Ruby scripts that install gemserv and set up new virtual hosts with user access to those hosts' directories.
+
+=> https://github.com/schrockwell/gemserv-admin gemserv setup scripts
+=> https://github.com/schrockwell/gemini.rockwellschrock.com Source of this site

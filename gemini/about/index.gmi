@@ -1,0 +1,23 @@
+# About
+
+Hi! I like to make things.
+
+I am primarily a full-stack web developer, focusing on Phoenix and Rails applications.
+
+I like to design hardware as well, from basic circuits and PCBs to 3D-printed objects and enclosures. But nobody pays me for that. And they're probably right.
+
+If you look up, you might see me buzzing around in my 1977 Piper Archer II.
+
+=> images/plane.jpeg PA-28-181
+
+I have two cats and the best wife ever.
+
+=> images/bucky.jpeg Bucky
+=> images/daisy.jpeg Daisy
+
+
+## Colophon
+
+This site is simulcast on the World Wide Web (deprecated) and Geminispace. 
+
+The web version of the site is statically generated from Gemtext with a Ruby script.

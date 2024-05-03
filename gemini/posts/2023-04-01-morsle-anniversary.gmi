@@ -1,0 +1,47 @@
+# One year of Morsle
+
+April 1, 2023
+
+Morsle has been out for a year, so I thought it would be fun to peruse some stats.
+
+=> https://morsle.fun/
+
+## Overall
+
+* 91,120 unique visitors, or an average of 250 every day. That's 91,119 more people than Samuel Morse.
+* 114,411 total visits. I guess 23,291 people didn't get the memo that this is a _daily_ challenge.
+* 372,097 total pageviews by the folks who _really_ wanted to visit that Settings screen.
+* 27% bounce rate which I choose to attribute entirely to bots.
+
+## Daily challenge
+
+* 56% of visitors completed the daily challenge, which coincidentally equals my KDR in Halo Infinite.
+* 99.2% win rate which indicates that maybe I did make the game too easy.
+* 17% of players chose hard mode which, as established, was not clearly hard enough.
+* 46% of players won at 40 WPM, suggesting that perhaps the game's easiness quotient was too large.
+
+## Practice mode
+
+* 22.6% of visitors played practice mode to get better at cheating on exams.
+=> https://www.dailymail.co.uk/femail/article-3137339/Writing-answers-tampon-using-MORSE-CODE-bizarre-ingenious-ways-British-students-cheated-exams-revealed.html Cheating on exams
+* 36% of practice mode games were for callsigns, by people who should have been using a real tool like Learn CW Online.
+* 19% of practice mode games were in hard mode by Chad operators who have never touched a microphone in their lives.
+
+=> https://lcwo.net/ Learn CW Online
+
+## Miscellaneous thoughts
+
+I have received a very small number of support emails. Also, this project was my first time dipping my toe into browser-based testing with Cypress. Coincidence?
+
+Boy, it is nice having a fully-static site hosted for free on a manged provider, with no server component to mange or upkeep. You can't beat that peace of mind. I should do more fun little projects like this.
+
+This completely failed as a viral marketing campaign for Remote Ham Radio. 
+
+I think originally I put 500 words in there? It's probably time to revisit that and add some more for the upcoming year. And I need to find a better word list – I received a lot of complaints about that.
+
+=> https://www.cypress.io/ Cypress
+=> https://nuxtjs.org/ Nuxt.js
+=> https://www.netlify.com/ Netlify
+=> https://www.remotehamradio.com/ Remote Ham Radio
+
+Dit dit!
