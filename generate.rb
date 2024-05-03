@@ -160,6 +160,7 @@ GEMINI_HOST = 'gemini://gemini.rockwellschrock.com/'
 SITE_TITLE = 'Rockwell Schrock'
 
 def process_site(path)
+  count = 0
   FileUtils.rm_rf(SITE_OUTPUT_DIR)
 
   # Recursively process all files in the /content directory and output to /html
@@ -179,13 +180,13 @@ def process_site(path)
         dir = File.dirname(html_path)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         File.write(html_path, html)
-        puts html_path
+        count += 1
       else
         out_file = file.gsub(GEMINI_INPUT_DIR, SITE_OUTPUT_DIR)
         dir = File.dirname(out_file)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         FileUtils.cp(file, out_file)
-        puts out_file
+        count += 1
       end
     end
   end
@@ -197,13 +198,28 @@ def process_site(path)
       dir = File.dirname(out_file)
       FileUtils.mkdir_p(dir) unless File.directory?(dir)
       FileUtils.cp(file, out_file)
-      puts out_file
+      count += 1
     end
   end
+
+  count
 end
 
 if $PROGRAM_NAME == __FILE__
-  process_site(GEMINI_INPUT_DIR)
-  # Start web server in html folder
-  system("ruby -run -e httpd _site -p 8000")
+  count = process_site(GEMINI_INPUT_DIR)
+  puts "Generated #{count} files"
+
+  if ARGV[0] == 'server'
+    Signal.trap("INT") { exit }
+
+    # Start a file system watcher to regenerate the site on changes (fork)
+    Process.fork do
+      Signal.trap("INT") { exit }
+      system("fswatch -o #{GEMINI_INPUT_DIR} #{WEB_INPUT_DIR} | xargs -n1 -I{} ruby generate.rb")
+    end
+    
+    # Start web server in html folder
+    system("ruby -run -e httpd _site -p 8000")
+
+  end
 end
