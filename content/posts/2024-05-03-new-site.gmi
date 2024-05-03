@@ -1,0 +1,49 @@
+# schrockwell.com - Now simulcast to the Web and Geminispace!
+
+May 3, 2024
+
+It's a tradition observed by developers everywhere: the complete overhaul and redesign of the personal web site. Today, it's my turn.
+
+This site is now published to the Web _and_ to Gemini. It's the same content, the same formatting, the same silly side projects – now on the creaky old Web and the shiny new Geminispace.
+
+## Initial exploration
+
+I played around with Kirby CMS for a few weeks. It went _okay_. I like how Kirby starts as a barebones setup, and every additional feature is opt-in. It's endlessly customizable, the admin panel UI looks great, and the documentation is mostly complete. 
+
+But the whole thing felt really complex for a basic home page, I'm not super familiar with PHP, and the deployment story was kind of "meh". I really didn't like how schemas and content were inextricably coupled together in the same repo.
+
+=> https://getkirby.com/ Kirby CMS
+
+Plus, I wanted to put something "real" on Gemini. And I definitely did _not_ want to maintain content in two places with two different formats.
+
+=> https://geminiprotocol.net/ Project Gemini
+
+## DIY
+
+The solution ended up being the simplest in nearly every way. There's one folder of Gemtext content, and a build script that statically generates both the web site and the Gemini capsule. 
+
+The build script is just shy of 300 lines of Ruby, which is a testament to the simplicty of Gemtext. Honestly, once GitHub Copilot figured out what I was trying to do, it did most of the work.
+
+
+```
+content/          <-- INPUT: Gemtext files, images, etc.
+    about/
+    posts/
+    projects/
+    index.gmi
+_site/            <-- OUTPUT: Web site (HTML)
+    ...
+    index.html
+_capsule/         <-- OUTPUT: Gemini capsule (Gemtext)
+    ...
+    index.gmi
+generate.rb       <-- Build script
+```
+
+The web site is built and hosted on Netlify, and the Gemini capsule gets rsync'ed to a Digital Ocean VPS running gemserv.
+
+Now I can stop procrastinating and focus on the content.
+
+There are still a few TODOs. A GitHub Action to deploy the Gemini capsule would be cool. And I would love to run the image assets through ImageMagick for resizing and sharpening. Should be easy enough to add.
+
+=> https://github.com/schrockwell/gemini.rockwellschrock.com Source code

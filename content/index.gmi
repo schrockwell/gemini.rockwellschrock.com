@@ -1,5 +1,9 @@
 # Rockwell Schrock
 
+## Latest Post
+
+=> /posts/2024-05-03-new-site.gmi schrockwell.com - Now simulcast to the Web and Geminispace!
+
 ## Around the Web
 
 => https://www.rockwellschrock.com 🏠 Home
