@@ -68,6 +68,12 @@ p {
   margin: 1rem 0;
 }
 
+hr {
+  margin: 2rem 1rem;
+  border: 0;
+  border-bottom: 1px solid #52525b;
+}
+
 h1:first-of-type {
   text-align: center;
   margin: 3rem 0;

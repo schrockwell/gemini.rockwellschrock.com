@@ -6,7 +6,7 @@ It's a tradition observed by developers everywhere: the complete overhaul and re
 
 This site is now published to the Web _and_ to Gemini. It's the same content, the same formatting, the same silly side projects – now on the creaky old Web and the shiny new Geminispace.
 
-## Initial exploration
+---
 
 I played around with Kirby CMS for a few weeks. It went _okay_. I like how Kirby starts as a barebones setup, and every additional feature is opt-in. It's endlessly customizable, the admin panel UI looks great, and the documentation is mostly complete. 
 
@@ -18,7 +18,7 @@ Plus, I wanted to put something "real" on Gemini. And I definitely did _not_ wan
 
 => https://geminiprotocol.net/ Project Gemini
 
-## DIY
+---
 
 The solution ended up being the simplest in nearly every way. There's one folder of Gemtext content, and a build script that statically generates both the web site and the Gemini capsule. 
 

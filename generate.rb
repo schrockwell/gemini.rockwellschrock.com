@@ -8,7 +8,7 @@ def lex_gemtext(gemtext)
   gemtext.split("\n").map do |line|
     if line.start_with?("```")
       in_pre = !in_pre
-      { type: :pre_div }
+      { type: :pre_div, text: '' }
     elsif in_pre
       { type: :text, text: line }
     elsif line.start_with?("# ")
@@ -29,6 +29,9 @@ def lex_gemtext(gemtext)
       else
         { type: :link, url: url, text: words[1..].join(" ")}
       end
+    elsif line.start_with?('---')
+      # Custom! Not part of the gemtext spec
+      { type: :hr, text: '' }
     else
       { type: :text, text: line }
     end
@@ -129,6 +132,9 @@ def render_html(parsed)
       
       "<div class=\"gallery\">#{figures}</div>"
 
+    when :hr
+      '<hr/>'
+
     else
       "<p>#{safe_text}</p>"
     end
@@ -158,8 +164,8 @@ WEB_OUTPUT_DIR = '_site'
 GEMINI_INPUT_DIR = 'gemini'
 GEMINI_OUTPUT_DIR = '_capsule'
 LAYOUT_PATH = WEB_INPUT_DIR + "/_layout.html"
-GEMINI_HOST = 'gemini://gmi.schrockwell.com/'
-WEB_HOST = 'https://www.schrockwell.com/'
+GEMINI_HOST = 'gemini://gmi.schrockwell.com'
+WEB_HOST = 'https://www.schrockwell.com'
 SITE_TITLE = 'Rockwell Schrock'
 
 def build_web_site
