@@ -1,8 +1,7 @@
 # Posts
 <web>
-## RSS Feed
 
-=> https://www.schrockwell.com/rss.xml RSS XML feed
+=> https://www.schrockwell.com/rss.xml RSS feed
 </web>
 
 ## 2024
