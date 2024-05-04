@@ -1,6 +1,17 @@
 #! /usr/bin/env ruby
 
-require "fileutils"
+require 'fileutils'
+require 'pathname'
+
+CONTENT_INPUT_DIR = 'content'
+WEB_INPUT_DIR = 'web'
+WEB_OUTPUT_DIR = '_site'
+GEMINI_INPUT_DIR = 'gemini'
+GEMINI_OUTPUT_DIR = '_capsule'
+LAYOUT_PATH = WEB_INPUT_DIR + "/_layout.html"
+GEMINI_HOST = 'gemini://gmi.schrockwell.com'
+WEB_HOST = 'https://www.schrockwell.com'
+SITE_TITLE = 'Rockwell Schrock'
 
 def lex_gemtext(gemtext)
   in_pre = false
@@ -158,15 +169,30 @@ def find_first_heading(tokens, default="Untitled")
   heading ? heading[:text] : default
 end
 
-CONTENT_INPUT_DIR = 'content'
-WEB_INPUT_DIR = 'web'
-WEB_OUTPUT_DIR = '_site'
-GEMINI_INPUT_DIR = 'gemini'
-GEMINI_OUTPUT_DIR = '_capsule'
-LAYOUT_PATH = WEB_INPUT_DIR + "/_layout.html"
-GEMINI_HOST = 'gemini://gmi.schrockwell.com'
-WEB_HOST = 'https://www.schrockwell.com'
-SITE_TITLE = 'Rockwell Schrock'
+def copy_file(file, input_dir, output_dir)
+  return 0 if File.basename(file).start_with?("_")
+
+  if process_photo(file, input_dir, output_dir)
+    1
+  else
+    out_file = file.gsub(input_dir, output_dir)
+    dir = File.dirname(out_file)
+    FileUtils.mkdir_p(dir) unless File.directory?(dir)
+    FileUtils.cp(file, out_file)
+    1
+  end
+end
+
+def process_photo(file, input_dir, output_dir)
+  return false unless file.end_with?(".jpg", ".jpeg")
+
+  # Run imagemagick and resize to 2000px max dimension, webp, and sharpen
+  out_file = file.gsub(input_dir, output_dir)
+
+  FileUtils.mkdir_p(File.dirname(out_file))
+  cmd = "convert '#{file}' -resize 1200x1200\\> -sharpen 0x0.7 '#{out_file}'"
+  system(cmd)
+end
 
 def build_web_site
   count = 0
@@ -191,11 +217,7 @@ def build_web_site
         File.write(html_path, html)
         count += 1
       else
-        out_file = file.gsub(CONTENT_INPUT_DIR, WEB_OUTPUT_DIR)
-        dir = File.dirname(out_file)
-        FileUtils.mkdir_p(dir) unless File.directory?(dir)
-        FileUtils.cp(file, out_file)
-        count += 1
+        count += copy_file(file, CONTENT_INPUT_DIR, WEB_OUTPUT_DIR)
       end
     end
   end
@@ -203,11 +225,7 @@ def build_web_site
   # Copy everything from /web to /_site, except if the file starts with an underscore
   Dir.glob("#{WEB_INPUT_DIR}/**/*").each do |file|
     if File.file?(file)
-      out_file = file.gsub(WEB_INPUT_DIR, WEB_OUTPUT_DIR)
-      dir = File.dirname(out_file)
-      FileUtils.mkdir_p(dir) unless File.directory?(dir)
-      FileUtils.cp(file, out_file)
-      count += 1
+      count += copy_file(file, WEB_INPUT_DIR, WEB_OUTPUT_DIR)
     end
   end
 
@@ -234,11 +252,7 @@ def build_gemini_capsule
         File.write(gemini_path, gemini)
         count += 1
       else
-        out_file = file.gsub(CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
-        dir = File.dirname(out_file)
-        FileUtils.mkdir_p(dir) unless File.directory?(dir)
-        FileUtils.cp(file, out_file)
-        count += 1
+        count += copy_file(file, CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
       end
     end
   end
