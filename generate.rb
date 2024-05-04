@@ -1,5 +1,7 @@
 #! /usr/bin/env ruby
 
+require 'date'
+require 'time'
 require 'fileutils'
 require 'pathname'
 
@@ -197,6 +199,7 @@ end
 def build_web_site
   count = 0
   FileUtils.rm_rf(WEB_OUTPUT_DIR)
+  rss_posts = []
 
   # Recursively process all files in the /content directory and output to /html
   Dir.glob("#{CONTENT_INPUT_DIR}/**/*").each do |file|
@@ -204,18 +207,29 @@ def build_web_site
       if file.end_with?(".gmi")
         gemtext = File.read(file)
         tokens = gemtext2tokens(gemtext)
-        title = find_first_heading(tokens).dup
+        h1_title = find_first_heading(tokens).dup
+        title = h1_title.dup
         title << " - #{SITE_TITLE}" unless title == SITE_TITLE
         
         gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub("/index.gmi", "/")
         layout = File.read(LAYOUT_PATH)
-        html = render_template(layout, { title: title, content: render_html(tokens), gemini_url: gemini_url})
+        content = render_html(tokens)
+        html = render_template(layout, { title: title, content: content, gemini_url: gemini_url})
 
         html_path = file.gsub(CONTENT_INPUT_DIR, WEB_OUTPUT_DIR).gsub(".gmi", ".html")
         dir = File.dirname(html_path)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         File.write(html_path, html)
         count += 1
+
+        # Add to RSS feed
+        if file.include?("/posts/")
+          # Convery basename to date
+          if File.basename(file).match?(/\d{4}-\d{2}-\d{2}/)
+            date = Date.parse(File.basename(file)[0..9])
+            rss_posts << { title: h1_title, url: WEB_HOST + html_path.gsub(WEB_OUTPUT_DIR, ""), date: date, body: content }
+          end
+        end
       else
         count += copy_file(file, CONTENT_INPUT_DIR, WEB_OUTPUT_DIR)
       end
@@ -228,6 +242,36 @@ def build_web_site
       count += copy_file(file, WEB_INPUT_DIR, WEB_OUTPUT_DIR)
     end
   end
+
+  # Generate RSS feed
+  posts_xml = rss_posts.sort_by { |post| post[:date] }.reverse.map do |post|
+    """
+    <item>
+      <title>#{post[:title]}</title>
+      <link>#{post[:url]}</link>
+      <pubDate>#{post[:date].rfc2822}</pubDate>
+      <description><![CDATA[#{post[:body]}]]></description>
+    </item>
+    """
+  end
+
+
+  rss = """<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+  <rss version=\"2.0\">
+    <channel>
+      <title>#{SITE_TITLE}</title>
+      <link>#{WEB_HOST}</link>
+      <description>#{SITE_TITLE}</description>
+      <language>en-us</language>
+      <pubDate>#{Time.now.rfc2822}</pubDate>
+      <lastBuildDate>#{Time.now.rfc2822}</lastBuildDate>
+      #{posts_xml.join("\n")}
+    </channel>
+  </rss>
+  """
+
+  rss_path = WEB_OUTPUT_DIR + "/rss.xml"
+  File.write(rss_path, rss)
 
   count
 end

@@ -1,5 +1,9 @@
 # Posts
 
+## RSS Feed
+
+=> https://www.schrockwell.com/rss.xml Subscribe (Web)
+
 ## 2024
 
 => /posts/2024-05-03-new-site.gmi 2024-05-03 [Gemini] schrockwell.com - Now simulcast to the Web and Geminispace!
