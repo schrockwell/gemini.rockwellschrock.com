@@ -75,7 +75,8 @@ def parse_gemtext(tokens)
     when :toggle_pre
       closing_pre = tokens[i+1..].index { |t| t[:type] == :toggle_pre }
       text = tokens[i+1..i+closing_pre].map { |t| t[:text] }.join("\n")
-      blocks << { type: :pre, text: text, scope: scope }
+      raw = tokens[i..i+closing_pre+1].map { |t| t[:raw] }.join("\n")
+      blocks << { type: :pre, text: text, scope: scope, raw: raw }
       i += closing_pre + 1
 
     when :toggle_web
@@ -87,19 +88,22 @@ def parse_gemtext(tokens)
     when :li
       all_items = tokens[i..].take_while { |t| t[:type] == :li }
       items_text = all_items.map { |t| t[:text] }
-      blocks << { type: :ul, items: items_text, scope: scope }
+      raw = all_items.map { |t| t[:raw] }.join("\n")
+      blocks << { type: :ul, items: items_text, scope: scope, raw: raw }
       i += all_items.length - 1
 
     when :quote
       all_quotes = tokens[i..].take_while { |t| t[:type] == :quote }
       text = all_quotes.map { |t| t[:text] }.join("\n")
-      blocks << { type: :blockquote, text: text, scope: scope }
+      raw = all_quotes.map { |t| t[:raw] }.join("\n")
+      blocks << { type: :blockquote, text: text, scope: scope, raw: raw }
       i += all_quotes.length - 1
 
     when :link
       if gallery_image?(token)
         all_images = tokens[i..].take_while { |t| gallery_image?(t) }
-        blocks << { type: :gallery, text: '', images: all_images, scope: scope }
+        raw = all_images.map { |t| t[:raw] }.join("\n")
+        blocks << { type: :gallery, text: '', images: all_images, scope: scope, raw: raw }
         i += all_images.length - 1
       else
         token[:scope] = scope
