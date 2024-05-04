@@ -5,6 +5,14 @@ This is the content and build scripts for building these static sites.
 - [http://www.schrockwell.com/](http://www.schrockwell.com/)
 - [gemini://gmi.schrockwell.com/](gemini://gmi.schrockwell.com/)
 
+## Nonstandard Gemtext markup
+
+`---` renders as-is in Gemtext, but converts to an `<hr>` in HTML.
+
+`<gemini>` and `</gemini>` toggle Gemini-only scope; the lines between will only be output to Gemtext files.
+
+`<web>` and `</web>` toggle Web-only scope; the lines between will only be output to HTML files.
+
 ## Development
 
 Requirements:
