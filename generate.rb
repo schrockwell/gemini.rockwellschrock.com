@@ -15,44 +15,59 @@ GEMINI_HOST = 'gemini://gmi.schrockwell.com'
 WEB_HOST = 'https://www.schrockwell.com'
 SITE_TITLE = 'Rockwell Schrock'
 
+def preprocess_gemtext(gemtext, scope)
+  selected = true
+
+  gemtext.split("\n").map do |line|
+    if line == '<web>'
+      selected = (scope == :web)
+      nil
+    elsif line == '<gemini>'
+      selected = (scope == :gemini)
+      nil
+    elsif line == '</web>' || line == '</gemini>'
+      selected = true
+      nil
+    elsif selected
+      line
+    else
+      nil
+    end
+  end.compact.join("\n")
+end
+
 def lex_gemtext(gemtext)
   in_pre = false
 
   gemtext.split("\n").map do |line|
     if line.start_with?("```")
       in_pre = !in_pre
-      { type: :toggle_pre, raw: line }
+      { type: :toggle_pre }
     elsif in_pre
-      { type: :text, text: line, raw: line }
+      { type: :text, text: line }
     elsif line.start_with?("# ")
-      { type: :h1, text: line[2..], raw: line }
+      { type: :h1, text: line[2..] }
     elsif line.start_with?("## ")
-      { type: :h2, text: line[3..], raw: line }
+      { type: :h2, text: line[3..] }
     elsif line.start_with?("### ")
-      { type: :h3, text: line[4..], raw: line }
+      { type: :h3, text: line[4..] }
     elsif line.start_with?("> ")
-      { type: :quote, text: line[2..], raw: line }
+      { type: :quote, text: line[2..] }
     elsif line.start_with?("* ")
-      { type: :li, text: line[2..], raw: line }
+      { type: :li, text: line[2..] }
     elsif line.start_with?("=> ")
       words = line[3..].split(" ")
       url = words[0]
       if words.length == 1
-        { type: :link, url: url, text: url, raw: line}
+        { type: :link, url: url, text: url }
       else
-        { type: :link, url: url, text: words[1..].join(" "), raw: line}
+        { type: :link, url: url, text: words[1..].join(" ") }
       end
     elsif line.start_with?('---')
       # Custom! Not part of the gemtext spec
-      { type: :hr, raw: line }
-    elsif line == '<web>' || line == '</web>'
-      # Custom! Not part of the gemtext spec
-      { type: :toggle_web, raw: line }
-    elsif line == '<gemini>' || line == '</gemini>'
-      # Custom! Not part of the gemtext spec
-      { type: :toggle_gemini, raw: line }
+      { type: :hr }
     else
-      { type: :text, text: line, raw: line }
+      { type: :text, text: line }
     end
   end
 end
@@ -66,7 +81,6 @@ end
 def parse_gemtext(tokens)
   i = 0
   blocks = []
-  scope = nil
 
   while i < tokens.length
     token = tokens[i]
@@ -75,43 +89,31 @@ def parse_gemtext(tokens)
     when :toggle_pre
       closing_pre = tokens[i+1..].index { |t| t[:type] == :toggle_pre }
       text = tokens[i+1..i+closing_pre].map { |t| t[:text] }.join("\n")
-      raw = tokens[i..i+closing_pre+1].map { |t| t[:raw] }.join("\n")
-      blocks << { type: :pre, text: text, scope: scope, raw: raw }
+      blocks << { type: :pre, text: text }
       i += closing_pre + 1
-
-    when :toggle_web
-      scope = scope ? nil : :web
-
-    when :toggle_gemini
-      scope = scope ? nil : :gemini
 
     when :li
       all_items = tokens[i..].take_while { |t| t[:type] == :li }
       items_text = all_items.map { |t| t[:text] }
-      raw = all_items.map { |t| t[:raw] }.join("\n")
-      blocks << { type: :ul, items: items_text, scope: scope, raw: raw }
+      blocks << { type: :ul, items: items_text }
       i += all_items.length - 1
 
     when :quote
       all_quotes = tokens[i..].take_while { |t| t[:type] == :quote }
       text = all_quotes.map { |t| t[:text] }.join("\n")
-      raw = all_quotes.map { |t| t[:raw] }.join("\n")
-      blocks << { type: :blockquote, text: text, scope: scope, raw: raw }
+      blocks << { type: :blockquote, text: text }
       i += all_quotes.length - 1
 
     when :link
       if gallery_image?(token)
         all_images = tokens[i..].take_while { |t| gallery_image?(t) }
-        raw = all_images.map { |t| t[:raw] }.join("\n")
-        blocks << { type: :gallery, text: '', images: all_images, scope: scope, raw: raw }
+        blocks << { type: :gallery, text: '', images: all_images }
         i += all_images.length - 1
       else
-        token[:scope] = scope
         blocks << token
       end
     
     else
-      token[:scope] = scope
       blocks << token
     end
 
@@ -122,7 +124,7 @@ def parse_gemtext(tokens)
 end
 
 def render_html(parsed)
-  parsed.select { |block| block[:scope] == nil || block[:scope] == :web }.map do |block|
+  parsed.map do |block|
     safe_text = block[:text].to_s.gsub("<", "&lt;").gsub(">", "&gt;")
 
     case block[:type]
@@ -173,7 +175,8 @@ def render_html(parsed)
   end.join("\n")
 end
 
-def gemtext2tokens(gemtext)
+def gemtext2tokens(gemtext, scope)
+  gemtext = preprocess_gemtext(gemtext, scope)
   tokens = lex_gemtext(gemtext)
   parse_gemtext(tokens)
 end
@@ -225,20 +228,25 @@ def build_web_site
     if File.file?(file)
       if file.end_with?(".gmi")
         gemtext = File.read(file)
-        tokens = gemtext2tokens(gemtext)
+        tokens = gemtext2tokens(gemtext, :web)
+
+        # Determine title
         h1_title = find_first_heading(tokens).dup
         title = h1_title.dup
         title << " - #{SITE_TITLE}" unless title == SITE_TITLE
         
-        gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub("/index.gmi", "/")
+        # Render HTML in layout
         layout = File.read(LAYOUT_PATH)
         content = render_html(tokens)
-        html = render_template(layout, { title: title, content: content, gemini_url: gemini_url})
+        gemini_url = GEMINI_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub("/index.gmi", "/")
+        html = render_template(layout, title: title, content: content, gemini_url: gemini_url)
 
+        # Output to file
         html_path = file.gsub(CONTENT_INPUT_DIR, WEB_OUTPUT_DIR).gsub(".gmi", ".html")
         dir = File.dirname(html_path)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
         File.write(html_path, html)
+        
         count += 1
 
         # Add to RSS feed
@@ -305,17 +313,16 @@ def build_gemini_capsule
 
     if File.file?(file)
       if file.end_with?(".gmi")
-        web_url = WEB_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub(".gmi", ".html").gsub("/index.html", "/")
         gemtext = File.read(file)
-        tokens = gemtext2tokens(gemtext)
-        filtered_gemtext = tokens.select { |t| t[:scope] == nil || t[:scope] == :gemini }.map { |t| t[:raw] }.join("\n")
-
-        gemini = render_template(layout, { content: filtered_gemtext, web_url: web_url })
+        filtered_gemtext = preprocess_gemtext(gemtext, :gemini)
+        
+        web_url = WEB_HOST + file.gsub(CONTENT_INPUT_DIR, "").gsub(".gmi", ".html").gsub("/index.html", "/")
+        rendered = render_template(layout, content: filtered_gemtext, web_url: web_url)
 
         gemini_path = file.gsub(CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
         dir = File.dirname(gemini_path)
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
-        File.write(gemini_path, gemini)
+        File.write(gemini_path, rendered)
         count += 1
       else
         count += copy_file(file, CONTENT_INPUT_DIR, GEMINI_OUTPUT_DIR)
