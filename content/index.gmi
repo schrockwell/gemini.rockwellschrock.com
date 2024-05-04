@@ -6,7 +6,9 @@
 
 ## Around the Web
 
+<gemini>
 => https://www.rockwellschrock.com 🏠 Home
+</gemini>
 => https://ww1x.radio 📻 WW1X.radio
 => https://dnc.show 🎙 Does Not Compute
 
@@ -19,7 +21,9 @@
 
 ## Around Geminispace
 
-=> gemini://gemini.rockwellschrock.com 🏠 Home
+<web>
+=> gemini://gmi.schrockwell.com 🏠 Home
+</web>
 => gemini://station.martinrue.com/schrockwell 🛰 schrockwell on Station
 
 <gemini>
