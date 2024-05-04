@@ -23,7 +23,7 @@
 => gemini://station.martinrue.com/schrockwell 🛰 schrockwell on Station
 
 <gemini>
-## LEO Orbit
+### LEO Orbit
 
 => gemini://tilde.team/~khuxkm/leo/ LEO Orbit webring
 => gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Fgmi.schrockwell.com ➡️ Next page
