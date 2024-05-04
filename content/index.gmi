@@ -1,4 +1,10 @@
 # Rockwell Schrock
+<gemini>
+
+=> /posts Posts
+=> /projects Projects
+=> /about About
+</gemini>
 
 ## Latest Post
 
