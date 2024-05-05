@@ -1,11 +1,8 @@
 # Posts
-<web>
-
-=> https://www.schrockwell.com/rss.xml RSS feed
-</web>
 
 ## 2024
 
+=> /posts/2024-05-04-backup-vortex.gmi 2024-05-04 [Productivity] The Backup Vortex
 => /posts/2024-05-03-new-site.gmi 2024-05-03 [Gemini] schrockwell.com - Now simulcast to the Web and Geminispace!
 
 ## 2023
@@ -23,3 +20,7 @@
 => /posts/2022-05-06-gemserv.gmi 2022-05-05 [Gemini] Self-hosting with gemserv
 => /posts/2022-05-04-meshtastic.gmi 2022-05-04 [LoRa] Long-distance communication with Meshtastic
 => /posts/2022-04-01-morsle.gmi 2022-04-01 [Web] Introducing Morsle
+<web>
+
+=> https://www.schrockwell.com/rss.xml RSS feed
+</web>

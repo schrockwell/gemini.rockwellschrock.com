@@ -1,0 +1,79 @@
+# The Backup Vortex
+
+May 4, 2024
+
+John Siracusa coined the term "backup vortex" to describe his elaborate system of backups upon backups for all his important data. I merely adopted the phrase and applied my own backup solution.
+
+=> https://hypercritical.co/ Hypercritical – John Siracusa's site
+
+Here is my state of the art, as of 2024.
+
+The short version: daily backups are made to a local NAS and to *two* off-site cloud storage providers.
+
+## Data categories
+
+These are the various categories of data that I backup – about 600 GB total.
+
+Some backups are performed daily by Arq (more on that later):
+
+* Photos
+* Documents
+* Music, Movies, etc.
+* Code
+* DB Backups
+
+Others require monthly export from their applications. The archived files are put into a "Backup Vortex" folder on the local disk which is then sucked up into the daily backups:
+
+* Calendar – macOS
+* Contacts – macOS
+* 2FA – OTP Auth on iOS
+* Notes – macOS
+* Notes – Craft
+* E-mail – Fastmail
+* Passwords – 1Password
+* Flight Logs – ForeFlight
+
+### Backup software
+
+I can't say enough good things about Arq on macOS. It's extremely flexible, performs efficient backups, and it supports all the standard cloud backends that you could want. It makes this entire backup scheme possible – and affordable.
+
+=> https://www.arqbackup.com/ Arq
+
+### Local machines
+
+A Mac Mini acts as a local server, storing nearly all of the above data. It's logged into my Apple ID so it syncs the latest photos and documents, which are pretty important ones.
+
+My main computer is an M2 MacBook Air, which has my latest code and daily DB backups from web applications.
+
+Both are running daily backups via Arq.
+
+### Storage providers
+
+These are the storage solutions that I rely on.
+
+=> https://www.synology.com/en-us Synology NAS
+=> https://www.backblaze.com/cloud-backup Backblaze computer backup
+=> https://www.backblaze.com/cloud-storage B2 cloud storage
+=> https://www.arqbackup.com/ Arq cloud storage
+
+## Tier 1: Local backup (Synology)
+
+A Synology DS218+ lives in my basement with two 4 TB drives in a Synology Hybrid Raid (SHR). With two drives, that's effectively RAID 1 (mirroring), so one drive can fail without any data loss.
+
+Arq runs a daily backup of all data to the local Synology box.
+
+## Tier 2: Off-site backup #1 (B2 & Backblaze)
+
+Arq run daily backups from the Mac Mini to B2 storage. 
+
+On the Air, the standard Backblaze clients runs continuously.
+
+## Tier 3: Off-site backup #2 (Arq Cloud Storage)
+
+An Arq subscription includes their homegrown cloud backup solution. So, might as well roll that into the vortex, for a bit of variety in cloud providers.
+
+## In summary
+
+That's it! Arq makes this all very easy. 
+
+The only annoying part is the monthly to-do of exporting archives from various applications. That tasks ends up being a good opportunity to verify that all the automated backups are working as expected, as well, so I guess it all works out.

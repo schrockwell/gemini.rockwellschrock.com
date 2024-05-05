@@ -6,8 +6,9 @@
 => /about About
 </gemini>
 
-## Latest Post
+## Latest Posts
 
+=> /posts/2024-05-04-backup-vortex.gmi The Backup Vortex
 => /posts/2024-05-03-new-site.gmi schrockwell.com - Now simulcast to the Web and Geminispace!
 
 ## Around the Web
