@@ -10,100 +10,6 @@
 	<!--[if IE]><link rel="stylesheet" href="/storm-blog/styles/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	
 	<link rel="stylesheet" href="/storm-blog/styles/main.css" type="text/css">
-	
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-	
-	<script type="text/javascript">
-		var radarOverlay, map, mapDiv, marker;
-		
-		var refreshMarker = function() {
-			mapDiv = document.getElementById("map");
-			if (mapDiv == null) {
-				return;
-			}
-
-			$.get("/storm-blog/spotter_feed.cfm", function(data) {
-				var objects = data.split("End:");
-				var found = false;
-
-				for (var i = 0; i < objects.length; i++) {
-					var object = objects[i];
-					if (object.indexOf("Rockwell Schrock") > -1) {
-						var lines = object.split("\n");
-						var coords = lines[1].split(" ")[1].split(",");
-						var utcTime = lines[2].split("\\n")[1];
-						var date = new Date(Date.parse(utcTime));
-						
-						var now = new Date();
-						var minutesAgo = Math.round((now.getTime() - date.getTime()) / 60000);
-
-						var latlng = new google.maps.LatLng(coords[0], coords[1]);
-
-						if (map == null) {
-							map = new google.maps.Map(mapDiv, {
-								zoom: 8,
-								mapTypeId: google.maps.MapTypeId.ROADMAP
-							});
-
-							marker = new google.maps.Marker({
-								map: map
-							});
-						}
-
-						map.setCenter(latlng);
-						marker.setPosition(latlng);
-						
-						$("#map_date").text(minutesAgo + " " + (minutesAgo == 1 ? "minute" : "minutes") + " ago (" + utcTime + ")");
-						
-						found = true;
-						break;
-					}
-				}
-				
-				if (found) {
-					refreshRadarOverlay();
-					$("#map, #map_info").show();
-				} else {
-					$("#map, #map_info").hide();
-				}
-
-			});
-		};
-
-		var refreshRadarOverlay = function() {
-			var imageBounds = new google.maps.LatLngBounds(
-			    new google.maps.LatLng(21.652538062803, -127.620375523875420),
-			    new google.maps.LatLng(50.406626367301044,-66.517937876818));
-			
-			var oldMap = map;
-
-			if (radarOverlay != null) {
-				oldMap = radarOverlay.getMap();
-				radarOverlay.setMap(null)
-			};
-
-			radarOverlay = new google.maps.GroundOverlay("http://radar.weather.gov/ridge/Conus/RadarImg/latest_radaronly.gif", imageBounds, { opacity: 0.5, map: oldMap });
-		};
-
-
-		setInterval(refreshMarker, 1 * 60 * 1000);
-
-		$(function() {
-			refreshMarker();
-
-			$("#radar_check").click(function() {
-				var check = $("#radar_check");
-				if (check.prop("checked")) {
-					radarOverlay.setMap(map);
-				} else {
-					radarOverlay.setMap(null);
-				}
-			});
-		});
-	
-	</script>
-	
 </head>
 <body>
 
@@ -115,7 +21,6 @@
 		
 		<ul>
 			<li><a href="/storm-blog/">Latest</a></li>
-			<li><a href="/storm-blog/2015.html">2015</a></li>
 			<li><a href="/storm-blog/2011.html">2011</a></li>
 			<li><a href="/storm-blog/2010.html">2010</a></li>
 			<li><a href="/storm-blog/2009.html">2009</a></li>
@@ -130,13 +35,6 @@
 		
 	</div>
 
-	<div class="container" id="notice">
-		<p>
-			<b>LIVE STREAMING</b> &ndash;
-			Download <a href="https://itunes.apple.com/app/id972909677">Periscope</a> and follow <a href="http://twitter.com/suckzone">@suckzone</a> to be notified when streams begin.
-		</p>
-	</div>
-	
 	<div class="container" id="map_info" style="display: none">
 		<div style="padding: 5px 20px; background-color: #333; color: #fff">
 			<div style="float: right">
@@ -154,7 +52,7 @@
 	
 	
 	<div class="container" id="bd">
-		<div class="prepend-2 span-13 append-1">
+		<div class="prepend-2 span-28 append-2">
 			
 			<div class="yearCallout">
 	<h1>2009 &ndash; NSSL Internship</h1>
@@ -266,9 +164,6 @@
 <p>I set up a Twitter account named suckzone for rapid-fire updates from the field, so you can more easily follow without a lot of tweets dilluting your feed.</p>
 <p>Also, I may migrate all the old &#8220;Storm Chasing for Dummies&#8221; posts here.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/02/launch.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -300,9 +195,6 @@
 <p><em>Bonus feature:</em> I just found <a href="http://rockwellschrock.com/storm-chasing/start-old.html">the old start page</a> from when Jake and I went storm chasing in 2007. I thought, when making this latest page, that I was being clever with the categorization of data into &#8220;today&#8221; and &#8220;now&#8221;. I guess I was just copying myself.</p>
 
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/06/start-page.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -330,9 +222,6 @@
 
 
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/12/business-card.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -352,11 +241,10 @@
 	
 	<p>I was going to write a long and detailed post about the multitude of technology that populates my chase vehicle. Instead, this brief video will have to temporarily suffice.</p>
 <p>There are also <a href="http://picasaweb.google.com/schrockwell/Preparaton?authkey=Gv1sRgCP6QgZ-IkvsF&amp;feat=directlink">some pictures of the equipment</a>.</p>
-<p style="text-align:center;"><object width="480" height="295"><param name="movie" value="http://www.youtube.com/v/lPW68sK6bH8&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/lPW68sK6bH8&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="295"></embed></object></p>
+<div style="text-align:center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lPW68sK6bH8?si=Z4xBPbqlUm2bZmAb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/14/storm-chasing-tools.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -391,9 +279,6 @@
 <p>Do a rain dance for me.</p>
 <p><strong>P. S.</strong> You may be wondering what the deal is with that deviation in my route through Pennsylvania. Well you couldn&#8217;t <em>pay</em> me to take Interstate 80 through Pennsylvania. No way. I hate it. It&#8217;s only an extra hour to go this alternate route, and it will be worth it.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/15/outbound-plan-a.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -428,9 +313,6 @@
 <p>Tonight I&#8217;m holing up at the Comfort Inn in Zainesville, OH. When we chased in 2007, staying at a Comfort Inn was always a pleasant surprise and a great deal. I&#8217;m glad to report that nothing has changed.</p>
 <p>Tomorrow might be the last driving-only day. I hope to end up in Iowa. I could end up tracking down some storms on Wednesday! I heard that VORTEX2 trekked north to Nebraska today. I bet they are targeting the same area as me. I&#8217;ll have more in-depth weather discussion tomorrow.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/18/first-outbound-leg.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -467,9 +349,6 @@
 <p>Follow along on the <a href="/storm-blog/map.html">live map</a> and <a href="http://twitter.com/suckzone">on Twitter</a>.</p>
 <p>And wish me luck!</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/19/second-outbound-leg.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -516,9 +395,6 @@
 <p>North Platte, of all places!</p>
 <p>I am beat! I don&#8217;t see anything interesting for tomorrow. Maybe I&#8217;ll sleep in and take it slow.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2009/05/20/route-2-chase.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -556,9 +432,6 @@
 <p>This museum is a gem in the middle of nowhere. I went on a Friday evening and it was empty. Completely empty. For anyone with even a passing interest in aeronautics or space exploration, I can&#8217;t recommend it enough.</p>
 <p>I have a really fun stop planned for tomorrow. You&#8217;ll never guess what it is. Never, ever, ever!</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/off-the-beaten-path/2009/05/22/sandhills-and-cosmosphere.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -597,9 +470,6 @@
 <p>I continued on to Norman after that, and moved into my apartment on campus. This evening there was a severe thunderstorm warning in downtown Oklahoma City, just twenty miles away! If it weren&#8217;t in a metropolitan area, I definitely would have chased after it.</p>
 <p>I hope this is a good omen.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/off-the-beaten-path/2009/05/23/twister-movie-museum.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -636,9 +506,6 @@
 <p>The weather here has been hot. And sunny. And dry. Meh.</p>
 <p>Hopefully that will change come Tuesday. As some better moisture makes its way back into the region, we have the potential for some good storms. We&#8217;re in a &#8220;slight risk&#8221; area for Tuesday, so my fingers are crossed.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/05/31/start-of-internship.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -699,9 +566,6 @@
 <p>I do not chase recklessly, and I do not wish it to be thought that this is the case. I always emphasize safety when I chase, and I always bring this up when I tell others about how I chase. I am humbled by my accident, and I hope it does not reflect poorly on the chase community by portraying them as daredevil thrill-seekers. That&#8217;s not what chasing is about.</p>
 <p>I hope that other chasers may learn from my mistakes. Take it slowly on both unkempt back roads and paved ones. Have a solid backup plan if things go horribly wrong. Never, ever take these storms for granted &#8211; they will mess you up. Luckily this storm didn&#8217;t, but this story could have ended any number of grim ways.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2009/06/05/wrecked.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -749,9 +613,6 @@
 <p>Thanks to Doug&#8217;s parents for letting us use the minivan! I hope they had a fun trip, and that we didn&#8217;t alienate them too much with our vernacular and TLAs (three letter acronyms).</p>
 <p>Also, I had fun chasing with a whole team of people. It&#8217;s great to divvy up the workload between driving, navigating, looking at data, and listening to the radio. We also were able to reach unanimous decisions pretty easily. Overall we made a good team. I hope I get to chase with these guys again.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2009/06/09/ponca-city-bust.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -793,9 +654,6 @@
 <p>This was the closest I&#8217;ve been to a tornado so far, estimated at about five miles. I didn&#8217;t even have to drive anywhere. But I didn&#8217;t get to see it. No photographs, no video &#8211; nothing but <a href="http://picasaweb.google.com/lh/photo/R7iOlsofRf1bJSqInLfA_A?feat=directlink">a shaky video of us running around the apartments</a>. Oh well. There&#8217;s always the next chase, next spring. It will always be there.</p>
 <p>Here is <a href="http://community.kfor.com/_June-12-2009-Norman-Tornado-Video/video/687286/96408.html">a great video</a> and <a href="http://www.ireport.com/docs/DOC-270344">a nice frame grab</a> from other sources.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2009/06/12/norman-tornado.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -849,9 +707,6 @@
 <p>Frustrated.</p>
 <p>But still feeling that today wasn&#8217;t as bad as it seemed.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2009/06/13/turkey-day.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -893,9 +748,6 @@
 <p>Thank you for reading!</p>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/NbM5NBaGJGhOmZegh87ZKA?feat=directlink"><img src="http://lh3.ggpht.com/_8Y30e9LNsno/SoRuT53PQiI/AAAAAAAAB84/7HQck6z7dMc/s400/DSC_2586.JPG" alt="" /></a></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2009/08/13/home-again.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -972,58 +824,17 @@
 	
 	
 
-	
-	
-	
-
 			
-		</div>
-		<div class="span-6 append-2 last">
-			
-			<!-- <div id="map" style="width: 230px; height: 300px;"></div>
-			<p id="map_time"></p> -->
-			
-			<div id="twitter_div">
-				<a class="twitter-timeline" href="https://twitter.com/suckzone" data-widget-id="592428431297613824">Tweets by @suckzone</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
 		</div>
 	</div>
 	
 	
 	<div class="container" id="ft">
-		All content &copy; 2015 <a href="http://rockwellschrock.com/">Rockwell Schrock</a>. 
+		All content &copy; 2024 <a href="http://rockwellschrock.com/">Rockwell Schrock</a>. 
 		Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
 	</div>
 	
 </div>
 
-<!-- Disqus -->
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-		var links = document.getElementsByTagName('a');
-		var query = '?';
-		for(var i = 0; i < links.length; i++) {
-			if(links[i].href.indexOf('#disqus_thread') >= 0) {
-				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-			}
-		}
-		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/suckzone/get_num_replies.js' + query + '"></' + 'script>');
-	})();
-//]]>
-</script>
-
-<!-- Google Analytics -->
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-4760872-7");
-pageTracker._trackPageview();
-} catch(err) {}</script>
 </body>
 </html>

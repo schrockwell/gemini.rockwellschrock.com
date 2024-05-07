@@ -4,29 +4,13 @@
  <title>The Suck Zone</title>
  <link href="http://rockwellschrock.com/storm-blog/atom.xml" rel="self"/>
  <link href="http://rockwellschrock.com/"/>
- <updated>2015-04-27T11:04:26-04:00</updated>
+ <updated>2024-05-07T10:16:44-04:00</updated>
  <id>http://rockwellschrock.com/storm-blog/</id>
  <author>
    <name>Rockwell Schrock</name>
    <email>schrockwell@gmail.com</email>
  </author>
 
- 
- <entry>
-   <title>Here it goes again</title>
-   <link href="http://rockwellschrock.com/storm-blog/2015/04/26/here-it-goes-again.html"/>
-   <updated>2015-04-26T00:00:00-04:00</updated>
-   <id>http://rockwellschrock.com/storm-blog/2015/04/26/here-it-goes-again</id>
-   <content type="html">&lt;p&gt;Okay, so here&amp;#8217;s the deal. This is kind of a last-minute thing.&lt;/p&gt;
-&lt;p&gt;I had plans to be in Dayton, Ohio for the &lt;a href=&quot;http://hamvention.org/&quot;&gt;Hamvention&lt;/a&gt; &amp;ndash; the biggest, dirtiest, most infamous ham radio convention in existence &amp;ndash; on the weekend of May 16. So what&amp;#8217;s another week on the Plains?&lt;/p&gt;
-&lt;p&gt;After Dayton, Jess and I will fly to Kansas City and take a rental car from there for a week. On May 24 we fly back home from Kansas City.&lt;/p&gt;
-&lt;p&gt;It&amp;#8217;s really nerve-wracking to schedule these Chasecations in advance. In 2011, we were chasing the same exact week in May, but it was very slow going. We could hit the jackpot, or we could catch a sunburn. There&amp;#8217;s no way to tell but to make plans, expect the worst, and hope for the best.&lt;/p&gt;
-&lt;h3&gt;Bits and bytes&lt;/h3&gt;
-&lt;p&gt;I&amp;#8217;m taking the technology in a new direction this year. With my own vehicle, I could make custom mounts for everything in advance. However, we&amp;#8217;re in a rental car this time, so whatever I bring has to fit in my luggage, and has to be flexible enough to accomodate different mounting scenarios.&lt;/p&gt;
-&lt;p&gt;As for streaming, I&amp;#8217;d like to keep it simple as possible. I don&amp;#8217;t want to muck around with &lt;span class=&quot;caps&quot;&gt;GPS&lt;/span&gt; uploaders and worrying about keeping a reliable stream going. There&amp;#8217;s enough going on during a chase as it is. If it works, it works.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;ll probably use &lt;a href=&quot;https://www.periscope.tv/&quot;&gt;Twitter Periscope&lt;/a&gt; for streaming. Follow &lt;a href=&quot;https://twitter.com/suckzone&quot;&gt;@suckzone&lt;/a&gt; or watch the sidebar on this page for when I go live. Or, more preferrably, &lt;a href=&quot;https://itunes.apple.com/app/id972909677&quot;&gt;download Periscope&lt;/a&gt; on your favorite iOS device and follow @suckzone for real-time notifications.&lt;/p&gt;
-&lt;p&gt;I will post more about the technology pieces as I get everything together this week.&lt;/p&gt;</content>
- </entry>
  
  <entry>
    <title>High risk, low yield</title>
@@ -903,7 +887,9 @@ After a few more miles we were clear of danger. We stopped a few more times and 
    <id>http://rockwellschrock.com/storm-blog/2009/05/14/storm-chasing-tools</id>
    <content type="html">&lt;p&gt;I was going to write a long and detailed post about the multitude of technology that populates my chase vehicle. Instead, this brief video will have to temporarily suffice.&lt;/p&gt;
 &lt;p&gt;There are also &lt;a href=&quot;http://picasaweb.google.com/schrockwell/Preparaton?authkey=Gv1sRgCP6QgZ-IkvsF&amp;amp;feat=directlink&quot;&gt;some pictures of the equipment&lt;/a&gt;.&lt;/p&gt;
-&lt;p style=&quot;text-align:center;&quot;&gt;&lt;object width=&quot;480&quot; height=&quot;295&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/lPW68sK6bH8&amp;hl=en&amp;fs=1&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/lPW68sK6bH8&amp;hl=en&amp;fs=1&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; allowfullscreen=&quot;true&quot; width=&quot;480&quot; height=&quot;295&quot;&gt;&lt;/embed&gt;&lt;/object&gt;&lt;/p&gt;</content>
+&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lPW68sK6bH8?si=Z4xBPbqlUm2bZmAb&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</content>
  </entry>
  
  <entry>
@@ -1055,7 +1041,7 @@ After a few more miles we were clear of danger. We stopped a few more times and 
    <updated>2007-05-07T00:00:00-04:00</updated>
    <id>http://rockwellschrock.com/storm-blog/2007/05/07/video-curse-of-the-windshield</id>
    <content type="html">&lt;div style=&quot;text-align:center&quot;&gt;
-&lt;p&gt;&lt;embed align=&quot;middle&quot; flashvars=&quot;playerMode=embedded&quot; salign=&quot;TL&quot; scale=&quot;noScale&quot; bgcolor=&quot;#ffffff&quot; quality=&quot;best&quot; id=&quot;VideoPlayback&quot; src=&quot;http://video.google.com/googleplayer.swf?docId=287300482430396378&amp;amp;hl=en&quot; type=&quot;application/x-shockwave-flash&quot; style=&quot;width: 400px; height: 326px;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Jxh6MqeqPqo?si=OOrtH2WBEMVPmUxe&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;So the windshield screwed us over for this week. The earliest I could get it replaced would be Tuesday, and by the time that happened and we drove west, the trough in the southern Plains which would have produced the severe weather would have passed. We could be on the road right now, but instead we&amp;#8217;ll have to wait for a few more days.&lt;/p&gt;
 &lt;p&gt;I will get the windshield replaced this week, and then we will look at the patterns next week for possibly some high Plains chasing next Wednesday, assuming sufficient moisture can get that far north.&lt;/p&gt;
@@ -1068,8 +1054,8 @@ After a few more miles we were clear of danger. We stopped a few more times and 
    <link href="http://rockwellschrock.com/storm-blog/2007/03/10/video-spring-break-preparations.html"/>
    <updated>2007-03-10T00:00:00-05:00</updated>
    <id>http://rockwellschrock.com/storm-blog/2007/03/10/video-spring-break-preparations</id>
-   <content type="html">&lt;div style=&quot;text-align: center&quot;&gt;
-&lt;p&gt;&lt;embed align=&quot;middle&quot; flashvars=&quot;playerMode=embedded&quot; salign=&quot;TL&quot; scale=&quot;noScale&quot; bgcolor=&quot;#ffffff&quot; quality=&quot;best&quot; src=&quot;http://video.google.com/googleplayer.swf?docId=-6302705678129860588&amp;amp;hl=en&quot; type=&quot;application/x-shockwave-flash&quot; id=&quot;VideoPlayback&quot; style=&quot;width: 400px; height: 326px;&quot;&gt;&lt;/p&gt;
+   <content type="html">&lt;div style=&quot;text-align:center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/kd4R2FrrxSY?si=y8RwdLuCQiFS9C5z&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;/div&gt;</content>
  </entry>
  
@@ -1111,7 +1097,7 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;/ul&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
 &lt;ul&gt;
-	&lt;li&gt;4:42 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062306_1642.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;4:42 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062306_1642.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Photos&lt;/h3&gt;
 &lt;p style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/3LfgALkTu26lksi6kvDmyg?feat=directlink&quot;&gt;&lt;img src=&quot;http://lh6.ggpht.com/_8Y30e9LNsno/RJ81XXzJABI/AAAAAAAAAW0/Boi5Qg-XDf8/s400/_dsc0593.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
@@ -1155,11 +1141,11 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;/ul&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
 &lt;ul&gt;
-	&lt;li&gt;12:01 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062206_1201.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;3:06 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062206_1506.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;3:42 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062206_1542.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;3:58 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062206_1558.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;5:03 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062206_1703.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;12:01 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062206_1201.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;3:06 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062206_1506.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;3:42 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062206_1542.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;3:58 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062206_1558.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;5:03 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062206_1703.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Photos&lt;/h3&gt;
 &lt;p style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/1Vg7Vov9Z-wFBvELmzmxrA?feat=directlink&quot;&gt;&lt;img src=&quot;http://lh5.ggpht.com/_8Y30e9LNsno/RJ8onwpKABI/AAAAAAAAAT4/SZYMCCGKYXM/s400/_dsc0458.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
@@ -1206,8 +1192,8 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;/ul&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
 &lt;ul&gt;
-	&lt;li&gt;4:03 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062106_1603.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;8:08 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062106_2008.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;4:03 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062106_1603.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;8:08 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062106_2008.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Photos&lt;/h3&gt;
 &lt;p style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/TFyaOxzqn_QLZnhMwWhz1A?feat=directlink&quot;&gt;&lt;img src=&quot;http://lh3.ggpht.com/_8Y30e9LNsno/RJ8kAuh1ABI/AAAAAAAAAR0/iPA1MqB_ds0/s400/_dsc0345.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
@@ -1257,13 +1243,13 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;/ul&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
 &lt;ul&gt;
-	&lt;li&gt;9:40 AM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_0940.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;12:42 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_1242.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;3:52 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_1552.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;6:33 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_1833.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;7:26 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_1926.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;8:03 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_2003.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;10:38 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/062006_2238.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;9:40 AM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_0940.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;12:42 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_1242.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;3:52 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_1552.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;6:33 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_1833.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;7:26 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_1926.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;8:03 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_2003.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;10:38 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/062006_2238.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Photos&lt;/h3&gt;
 &lt;p style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/RA1yrpm4Vwv8cj5vv1vcpQ?feat=directlink&quot;&gt;&lt;img src=&quot;http://lh5.ggpht.com/_8Y30e9LNsno/RJ8jzojrABI/AAAAAAAAAN4/PKR26icG_OA/s400/_dsc0080.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
@@ -1316,11 +1302,11 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;/ul&gt;
 &lt;h3&gt;Audio&lt;/h3&gt;
 &lt;ul&gt;
-	&lt;li&gt;3:52 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061906_1552.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;5:39 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061906_1739.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;7:50 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061906_1950.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;8:55 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061906_2055.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
-	&lt;li&gt;10:09 PM &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061906_2209.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;3:52 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061906_1552.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;5:39 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061906_1739.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;7:50 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061906_1950.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;8:55 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061906_2055.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
+	&lt;li&gt;10:09 PM &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061906_2209.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Photos&lt;/h3&gt;
 &lt;p style=&quot;text-align:center;&quot;&gt;&lt;a href=&quot;http://picasaweb.google.com/lh/photo/qcReI6uSL4fXD32q3MVtYg?feat=directlink&quot;&gt;&lt;img src=&quot;http://lh5.ggpht.com/_8Y30e9LNsno/RJ8OkXMkABI/AAAAAAAAAKk/aoN65mHB9i8/s400/_dsc9986.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;br /&gt;
@@ -1354,9 +1340,9 @@ After a few more miles we were clear of danger. We stopped a few more times and 
 &lt;h3&gt;Realtime Summary&lt;/h3&gt;
 &lt;p&gt;(Note the time zone change)&lt;/p&gt;
 &lt;ul&gt;
-	&lt;li&gt;11:15 AM &lt;span class=&quot;caps&quot;&gt;MDT&lt;/span&gt; &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061806_1115_mdt.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;11:15 AM &lt;span class=&quot;caps&quot;&gt;MDT&lt;/span&gt; &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061806_1115_mdt.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 	&lt;li&gt;1:33 PM &lt;span class=&quot;caps&quot;&gt;MDT&lt;/span&gt; &amp;#8211; Currently going E on I-76, 20 mi from NE. Watching an outflow boundary developing in central NE. Targetting North Platte for lunch and gas.&lt;/li&gt;
-	&lt;li&gt;4:04 PM &lt;span class=&quot;caps&quot;&gt;CDT&lt;/span&gt; &amp;#8211; &lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061806_1604_cdt.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/li&gt;
+	&lt;li&gt;4:04 PM &lt;span class=&quot;caps&quot;&gt;CDT&lt;/span&gt; &amp;#8211; &lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061806_1604_cdt.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/li&gt;
 	&lt;li&gt;5:23 PM &lt;span class=&quot;caps&quot;&gt;CDT&lt;/span&gt; &amp;#8211; Heading E on 92 towards a scattered cu. field. Beautiful country out here; a little hilly and lots of green. Cows (moo) and horses! So cool.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Final Thoughts&lt;/h3&gt;
@@ -1388,7 +1374,7 @@ After a few more miles we were clear of danger. We stopped a few more times and 
    <content type="html">&lt;p&gt;Just checking in from Logan! I&amp;#8217;m here excessively early, as always, with over an hour to kill. I&amp;#8217;m taking United flight 267 at 11:20. Everything is going smoothly so far. My carry-on bag was screened at the security check-in, probably due to the excessive electronic gear inside (laptop, camera, iPod, Nintendo DS Lite, etc.).&lt;/p&gt;
 &lt;p&gt;Okay, enough with the boring details. More posts to come.&lt;/p&gt;
 &lt;p&gt;Update after meeting up with the tour group and having dinner:&lt;br /&gt;
-&lt;embed autoplay=&quot;false&quot; src=&quot;/storm-blog/audio/061706_0947.mp3&quot; width=&quot;200&quot; height=&quot;20&quot;&gt;&lt;/p&gt;</content>
+&lt;audio controls&gt;&lt;source src=&quot;/storm-blog/audio/061706_0947.mp3&quot; type=&quot;audio/mpeg&quot;&gt;&lt;/audio&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>

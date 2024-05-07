@@ -10,100 +10,6 @@
 	<!--[if IE]><link rel="stylesheet" href="/storm-blog/styles/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 	
 	<link rel="stylesheet" href="/storm-blog/styles/main.css" type="text/css">
-	
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
-	
-	<script type="text/javascript">
-		var radarOverlay, map, mapDiv, marker;
-		
-		var refreshMarker = function() {
-			mapDiv = document.getElementById("map");
-			if (mapDiv == null) {
-				return;
-			}
-
-			$.get("/storm-blog/spotter_feed.cfm", function(data) {
-				var objects = data.split("End:");
-				var found = false;
-
-				for (var i = 0; i < objects.length; i++) {
-					var object = objects[i];
-					if (object.indexOf("Rockwell Schrock") > -1) {
-						var lines = object.split("\n");
-						var coords = lines[1].split(" ")[1].split(",");
-						var utcTime = lines[2].split("\\n")[1];
-						var date = new Date(Date.parse(utcTime));
-						
-						var now = new Date();
-						var minutesAgo = Math.round((now.getTime() - date.getTime()) / 60000);
-
-						var latlng = new google.maps.LatLng(coords[0], coords[1]);
-
-						if (map == null) {
-							map = new google.maps.Map(mapDiv, {
-								zoom: 8,
-								mapTypeId: google.maps.MapTypeId.ROADMAP
-							});
-
-							marker = new google.maps.Marker({
-								map: map
-							});
-						}
-
-						map.setCenter(latlng);
-						marker.setPosition(latlng);
-						
-						$("#map_date").text(minutesAgo + " " + (minutesAgo == 1 ? "minute" : "minutes") + " ago (" + utcTime + ")");
-						
-						found = true;
-						break;
-					}
-				}
-				
-				if (found) {
-					refreshRadarOverlay();
-					$("#map, #map_info").show();
-				} else {
-					$("#map, #map_info").hide();
-				}
-
-			});
-		};
-
-		var refreshRadarOverlay = function() {
-			var imageBounds = new google.maps.LatLngBounds(
-			    new google.maps.LatLng(21.652538062803, -127.620375523875420),
-			    new google.maps.LatLng(50.406626367301044,-66.517937876818));
-			
-			var oldMap = map;
-
-			if (radarOverlay != null) {
-				oldMap = radarOverlay.getMap();
-				radarOverlay.setMap(null)
-			};
-
-			radarOverlay = new google.maps.GroundOverlay("http://radar.weather.gov/ridge/Conus/RadarImg/latest_radaronly.gif", imageBounds, { opacity: 0.5, map: oldMap });
-		};
-
-
-		setInterval(refreshMarker, 1 * 60 * 1000);
-
-		$(function() {
-			refreshMarker();
-
-			$("#radar_check").click(function() {
-				var check = $("#radar_check");
-				if (check.prop("checked")) {
-					radarOverlay.setMap(map);
-				} else {
-					radarOverlay.setMap(null);
-				}
-			});
-		});
-	
-	</script>
-	
 </head>
 <body>
 
@@ -115,7 +21,6 @@
 		
 		<ul>
 			<li><a href="/storm-blog/">Latest</a></li>
-			<li><a href="/storm-blog/2015.html">2015</a></li>
 			<li><a href="/storm-blog/2011.html">2011</a></li>
 			<li><a href="/storm-blog/2010.html">2010</a></li>
 			<li><a href="/storm-blog/2009.html">2009</a></li>
@@ -130,13 +35,6 @@
 		
 	</div>
 
-	<div class="container" id="notice">
-		<p>
-			<b>LIVE STREAMING</b> &ndash;
-			Download <a href="https://itunes.apple.com/app/id972909677">Periscope</a> and follow <a href="http://twitter.com/suckzone">@suckzone</a> to be notified when streams begin.
-		</p>
-	</div>
-	
 	<div class="container" id="map_info" style="display: none">
 		<div style="padding: 5px 20px; background-color: #333; color: #fff">
 			<div style="float: right">
@@ -154,7 +52,7 @@
 	
 	
 	<div class="container" id="bd">
-		<div class="prepend-2 span-13 append-1">
+		<div class="prepend-2 span-28 append-2">
 			
 			<div class="yearCallout">
 	<h1>2006 &ndash; Silver Lining Tours</h1>
@@ -191,9 +89,6 @@
 	<p>Finally! The time has come! I leave for chasing with <a href="http://silverliningtours.com/">Silver Lining Tours</a> tomorrow. We will be chasing from Sunday through to next Friday. Hopefully this nuclear ridge that has held in place for the past month will move on and hopefully the mid-level winds and moisture levels pick up by the end of the week.</p>
 <p>I will be posting to this blog very often. In addition to regular posts and pictures when I find Internet access, I will also be recording voice messages while we&#8217;re on the road, so check the blog often during the upcoming week.</p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2006/06/16/chasing-next-week.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -214,11 +109,8 @@
 	<p>Just checking in from Logan! I&#8217;m here excessively early, as always, with over an hour to kill. I&#8217;m taking United flight 267 at 11:20. Everything is going smoothly so far. My carry-on bag was screened at the security check-in, probably due to the excessive electronic gear inside (laptop, camera, iPod, Nintendo DS Lite, etc.).</p>
 <p>Okay, enough with the boring details. More posts to come.</p>
 <p>Update after meeting up with the tour group and having dinner:<br />
-<embed autoplay="false" src="/storm-blog/audio/061706_0947.mp3" width="200" height="20"></p>
+<audio controls><source src="/storm-blog/audio/061706_0947.mp3" type="audio/mpeg"></audio></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/2006/06/17/2006-trains-planes-and-automobiles.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -252,9 +144,9 @@
 <h3>Realtime Summary</h3>
 <p>(Note the time zone change)</p>
 <ul>
-	<li>11:15 AM <span class="caps">MDT</span> &#8211; <embed autoplay="false" src="/storm-blog/audio/061806_1115_mdt.mp3" width="200" height="20"></li>
+	<li>11:15 AM <span class="caps">MDT</span> &#8211; <audio controls><source src="/storm-blog/audio/061806_1115_mdt.mp3" type="audio/mpeg"></audio></li>
 	<li>1:33 PM <span class="caps">MDT</span> &#8211; Currently going E on I-76, 20 mi from NE. Watching an outflow boundary developing in central NE. Targetting North Platte for lunch and gas.</li>
-	<li>4:04 PM <span class="caps">CDT</span> &#8211; <embed autoplay="false" src="/storm-blog/audio/061806_1604_cdt.mp3" width="200" height="20"></li>
+	<li>4:04 PM <span class="caps">CDT</span> &#8211; <audio controls><source src="/storm-blog/audio/061806_1604_cdt.mp3" type="audio/mpeg"></audio></li>
 	<li>5:23 PM <span class="caps">CDT</span> &#8211; Heading E on 92 towards a scattered cu. field. Beautiful country out here; a little hilly and lots of green. Cows (moo) and horses! So cool.</li>
 </ul>
 <h3>Final Thoughts</h3>
@@ -277,9 +169,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/TmbKX_mYKmj1JYrv1Pwsmw?feat=directlink"><img src="http://lh4.ggpht.com/_8Y30e9LNsno/RJ8PbfwPABI/AAAAAAAAAMw/26PIlzn5ZGw/s400/_dsc9941.jpg" alt="" /></a><br />
 <em>9:30 PM <span class="caps">CDT</span> &#8211; Observing a storm way off in the distance; yes, it is still light out at this time! Crazy.</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/18/day-1-summary.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -328,11 +217,11 @@
 </ul>
 <h3>Audio</h3>
 <ul>
-	<li>3:52 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/061906_1552.mp3" width="200" height="20"></li>
-	<li>5:39 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/061906_1739.mp3" width="200" height="20"></li>
-	<li>7:50 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/061906_1950.mp3" width="200" height="20"></li>
-	<li>8:55 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/061906_2055.mp3" width="200" height="20"></li>
-	<li>10:09 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/061906_2209.mp3" width="200" height="20"></li>
+	<li>3:52 PM &#8211; <audio controls><source src="/storm-blog/audio/061906_1552.mp3" type="audio/mpeg"></audio></li>
+	<li>5:39 PM &#8211; <audio controls><source src="/storm-blog/audio/061906_1739.mp3" type="audio/mpeg"></audio></li>
+	<li>7:50 PM &#8211; <audio controls><source src="/storm-blog/audio/061906_1950.mp3" type="audio/mpeg"></audio></li>
+	<li>8:55 PM &#8211; <audio controls><source src="/storm-blog/audio/061906_2055.mp3" type="audio/mpeg"></audio></li>
+	<li>10:09 PM &#8211; <audio controls><source src="/storm-blog/audio/061906_2209.mp3" type="audio/mpeg"></audio></li>
 </ul>
 <h3>Photos</h3>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/qcReI6uSL4fXD32q3MVtYg?feat=directlink"><img src="http://lh5.ggpht.com/_8Y30e9LNsno/RJ8OkXMkABI/AAAAAAAAAKk/aoN65mHB9i8/s400/_dsc9986.jpg" alt="" /></a><br />
@@ -344,9 +233,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/6fc7Od0NJyKTZCKMhf_dcg?feat=directlink"><img src="http://lh6.ggpht.com/_8Y30e9LNsno/RJ8OoBG2ABI/AAAAAAAAAL8/h1lcshl4_IU/s400/_dsc0048.jpg" alt="" /></a><br />
 <em>8:17 PM &#8211; Looking out the window on the way back. I wish we could have stopped to photograph that for real; it was just beautiful.</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/19/day-2-summary-hichhikers-guide-to-nebraska.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -394,13 +280,13 @@
 </ul>
 <h3>Audio</h3>
 <ul>
-	<li>9:40 AM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_0940.mp3" width="200" height="20"></li>
-	<li>12:42 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_1242.mp3" width="200" height="20"></li>
-	<li>3:52 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_1552.mp3" width="200" height="20"></li>
-	<li>6:33 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_1833.mp3" width="200" height="20"></li>
-	<li>7:26 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_1926.mp3" width="200" height="20"></li>
-	<li>8:03 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_2003.mp3" width="200" height="20"></li>
-	<li>10:38 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062006_2238.mp3" width="200" height="20"></li>
+	<li>9:40 AM &#8211; <audio controls><source src="/storm-blog/audio/062006_0940.mp3" type="audio/mpeg"></audio></li>
+	<li>12:42 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_1242.mp3" type="audio/mpeg"></audio></li>
+	<li>3:52 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_1552.mp3" type="audio/mpeg"></audio></li>
+	<li>6:33 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_1833.mp3" type="audio/mpeg"></audio></li>
+	<li>7:26 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_1926.mp3" type="audio/mpeg"></audio></li>
+	<li>8:03 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_2003.mp3" type="audio/mpeg"></audio></li>
+	<li>10:38 PM &#8211; <audio controls><source src="/storm-blog/audio/062006_2238.mp3" type="audio/mpeg"></audio></li>
 </ul>
 <h3>Photos</h3>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/RA1yrpm4Vwv8cj5vv1vcpQ?feat=directlink"><img src="http://lh5.ggpht.com/_8Y30e9LNsno/RJ8jzojrABI/AAAAAAAAAN4/PKR26icG_OA/s400/_dsc0080.jpg" alt="" /></a><br />
@@ -416,9 +302,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/POOTyFv1k-_eT0-ylj4gvw?feat=directlink"><img src="http://lh3.ggpht.com/_8Y30e9LNsno/RJ8j-v_BABI/AAAAAAAAARY/ZhzGyLt2reU/s400/_dsc0314.jpg" alt="" /></a><br />
 <em>Shot of the day, right there. This was the last shot I took before the rain came and we had to pack up.</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/20/day-3-summary-success.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -461,8 +344,8 @@
 </ul>
 <h3>Audio</h3>
 <ul>
-	<li>4:03 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062106_1603.mp3" width="200" height="20"></li>
-	<li>8:08 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062106_2008.mp3" width="200" height="20"></li>
+	<li>4:03 PM &#8211; <audio controls><source src="/storm-blog/audio/062106_1603.mp3" type="audio/mpeg"></audio></li>
+	<li>8:08 PM &#8211; <audio controls><source src="/storm-blog/audio/062106_2008.mp3" type="audio/mpeg"></audio></li>
 </ul>
 <h3>Photos</h3>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/TFyaOxzqn_QLZnhMwWhz1A?feat=directlink"><img src="http://lh3.ggpht.com/_8Y30e9LNsno/RJ8kAuh1ABI/AAAAAAAAAR0/iPA1MqB_ds0/s400/_dsc0345.jpg" alt="" /></a><br />
@@ -476,9 +359,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/4wXTdjVzJEU3Q1gzlr7zkQ?feat=directlink"><img src="http://lh6.ggpht.com/_8Y30e9LNsno/RJ8kGE4qABI/AAAAAAAAATI/VtBXY2U190w/s400/_dsc0430.jpg" alt="" /></a><br />
 <em>This is ground-to-cloud lightning forking up from a radio tower. I got a handful of shots like this.</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/21/day-4-summary-more-frustration.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -518,11 +398,11 @@
 </ul>
 <h3>Audio</h3>
 <ul>
-	<li>12:01 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062206_1201.mp3" width="200" height="20"></li>
-	<li>3:06 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062206_1506.mp3" width="200" height="20"></li>
-	<li>3:42 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062206_1542.mp3" width="200" height="20"></li>
-	<li>3:58 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062206_1558.mp3" width="200" height="20"></li>
-	<li>5:03 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062206_1703.mp3" width="200" height="20"></li>
+	<li>12:01 PM &#8211; <audio controls><source src="/storm-blog/audio/062206_1201.mp3" type="audio/mpeg"></audio></li>
+	<li>3:06 PM &#8211; <audio controls><source src="/storm-blog/audio/062206_1506.mp3" type="audio/mpeg"></audio></li>
+	<li>3:42 PM &#8211; <audio controls><source src="/storm-blog/audio/062206_1542.mp3" type="audio/mpeg"></audio></li>
+	<li>3:58 PM &#8211; <audio controls><source src="/storm-blog/audio/062206_1558.mp3" type="audio/mpeg"></audio></li>
+	<li>5:03 PM &#8211; <audio controls><source src="/storm-blog/audio/062206_1703.mp3" type="audio/mpeg"></audio></li>
 </ul>
 <h3>Photos</h3>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/1Vg7Vov9Z-wFBvELmzmxrA?feat=directlink"><img src="http://lh5.ggpht.com/_8Y30e9LNsno/RJ8onwpKABI/AAAAAAAAAT4/SZYMCCGKYXM/s400/_dsc0458.jpg" alt="" /></a><br />
@@ -538,9 +418,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/DXWZNOKoYNB86xv4QVqrWw?feat=directlink"><img src="http://lh3.ggpht.com/_8Y30e9LNsno/RJ8otHCjABI/AAAAAAAAAV4/aSLHqs8-WmE/s400/_dsc0560.jpg" alt="" /></a><br />
 <em>Here&#8217;s one more look at this monster. Amazing structure.</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/22/day-5-summary.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -582,7 +459,7 @@
 </ul>
 <h3>Audio</h3>
 <ul>
-	<li>4:42 PM &#8211; <embed autoplay="false" src="/storm-blog/audio/062306_1642.mp3" width="200" height="20"></li>
+	<li>4:42 PM &#8211; <audio controls><source src="/storm-blog/audio/062306_1642.mp3" type="audio/mpeg"></audio></li>
 </ul>
 <h3>Photos</h3>
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/3LfgALkTu26lksi6kvDmyg?feat=directlink"><img src="http://lh6.ggpht.com/_8Y30e9LNsno/RJ81XXzJABI/AAAAAAAAAW0/Boi5Qg-XDf8/s400/_dsc0593.jpg" alt="" /></a><br />
@@ -598,9 +475,6 @@
 <p style="text-align:center;"><a href="http://picasaweb.google.com/lh/photo/dWLTwEGQwRJiiSQnkRfS0Q?feat=directlink"><img src="http://lh5.ggpht.com/_8Y30e9LNsno/RMrr7BeKABI/AAAAAAAAAeM/D5wB0_Gplgk/s400/HP%20Panorama%202250.jpg" alt="" /></a><br />
 <em>Stitched panorama of the HP supercell</em></p>
 	
-	<p class="bottom quiet" style="font-style:italic;">
-		<a class="quiet" href="/storm-blog/summary/2006/06/23/day-6-summary-the-grand-finale.html#disqus_thread">View Comments</a>
-	</p>
 	<div style="clear:both"></div>
 </div>
 	
@@ -785,58 +659,17 @@
 	
 	
 
-	
-	
-	
-
 			
-		</div>
-		<div class="span-6 append-2 last">
-			
-			<!-- <div id="map" style="width: 230px; height: 300px;"></div>
-			<p id="map_time"></p> -->
-			
-			<div id="twitter_div">
-				<a class="twitter-timeline" href="https://twitter.com/suckzone" data-widget-id="592428431297613824">Tweets by @suckzone</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
 		</div>
 	</div>
 	
 	
 	<div class="container" id="ft">
-		All content &copy; 2015 <a href="http://rockwellschrock.com/">Rockwell Schrock</a>. 
+		All content &copy; 2024 <a href="http://rockwellschrock.com/">Rockwell Schrock</a>. 
 		Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
 	</div>
 	
 </div>
 
-<!-- Disqus -->
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-		var links = document.getElementsByTagName('a');
-		var query = '?';
-		for(var i = 0; i < links.length; i++) {
-			if(links[i].href.indexOf('#disqus_thread') >= 0) {
-				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-			}
-		}
-		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/suckzone/get_num_replies.js' + query + '"></' + 'script>');
-	})();
-//]]>
-</script>
-
-<!-- Google Analytics -->
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-4760872-7");
-pageTracker._trackPageview();
-} catch(err) {}</script>
 </body>
 </html>
