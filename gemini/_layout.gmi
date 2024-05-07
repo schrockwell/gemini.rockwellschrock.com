@@ -4,7 +4,7 @@
 
 => / Home
 => /posts Posts
-=> /projects Projects
+=> /projects Pursuits
 => /about About
 
 => {{web_url}} View on the web

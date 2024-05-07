@@ -1,15 +1,42 @@
-# Projects
+# Pursuits
 
-## Software
+### 🗼 Remote Ham Radio
+Get on the air from anywhere! · Since 2010
+=> https://www.remotehamradio.com/ Remote Ham Radio
+=> images/rhr.png The RHR console
 
-=> https://www.remotehamradio.com/ Remote Ham Radio (2010-) - Get on the air from anywhere!
-=> https://ww1x.radio/sotagoat/ SOTA Goat (2012-) - Summits on the Air companion app for iOS
+### 🐐 SOTA Goat
+An iOS app for the Summits On The Air · Since 2010
+=> https://ww1x.radio/sotagoat/ SOTA Goat
+=> images/sotagoat1.png Recent SOTA spots
+=> images/sotagoat2.png Summit details
+=> images/sotagoat3.png iPad map view
 
-## Code
+### 💪 Bodyguard
+A simple, flexible authorization library for Elixir · Since 2016
+=> https://github.com/schrockwell/bodyguard Source code
 
-=> https://github.com/schrockwell/bodyguard Bodyguard (2016-) - A simple, flexible authorization library for Elixir
-=> /posts/2024-05-03-new-site.gmi schrockwell.com (2024-) - This site/capsule, simulcast to the Web and Gemini
+### 🌐 schrockwell.com
+You are here · Since 2024
+=> /posts/2024-05-03-new-site.gmi Introductory post
 
-## Media
+### 🎙️ Does Not Compute
+A weekly development podcast · 2020-2022
+=> https://dnc.show/ dnc.show
+=> images/dnc1.jpeg DNC album art
+=> images/dnc2.jpeg Recording with Sean Washington at ElixirConf 2019
 
-=> https://dnc.show/ Does Not Compute (2020-2022) - A weekly development podcast
+### ✈️ Flying
+Private pilot · Since 2018
+=> images/plane1.jpeg My 1977 Piper Archer II (PA-28-181)
+=> images/plane2.jpeg 5,500' somewhere over Maine
+
+### 📻 Amateur Radio
+WW1X · Extra Class license · Since 2010
+=> http://ww1x.com/ WW1X.com
+=> https://hams.at/ Hams.at
+=> https://www.qrz.com/db/ww1x QRZ.com profile
+=> https://www.youtube.com/watch?v=Z6ATX2Z9ews&list=PL1A7BB56F52CF7701 YouTube videos
+=> images/radio1.jpeg Gracing the cover of CQ Magazine
+=> images/radio2.jpeg Hex beam antenna overlooking Tortola on a DXpedition
+=> images/radio3.jpeg Field Day with WW1E

@@ -2,7 +2,7 @@
 <gemini>
 
 => /posts Posts
-=> /projects Projects
+=> /projects Pursuits
 => /about About
 </gemini>
 

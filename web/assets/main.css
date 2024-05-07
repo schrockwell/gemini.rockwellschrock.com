@@ -35,7 +35,7 @@ main a {
   display: block;
   color: #d97706;
   text-decoration: none;
-  margin: 0 2rem;
+  margin: 0.4rem 2rem;
   padding: 0.1rem 0.5rem;
   line-height: 1.4rem;
 }
@@ -59,13 +59,17 @@ img {
 h1,
 h2,
 h3 {
-  margin: 2rem 0 1rem 0;
+  margin: 3rem 0 0.4rem 0;
   color: #d6d3d1;
   line-height: 1.3em;
 }
 
 p {
-  margin: 1rem 0;
+  margin: 0;
+}
+
+p:empty {
+  margin: 0.8rem 0;
 }
 
 hr {
@@ -111,7 +115,8 @@ footer a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 3rem 2rem;
+  align-items: center;
+  margin: 2rem;
   gap: 2rem;
 }
 
@@ -158,4 +163,9 @@ footer a:hover {
   text-align: center;
   font-style: italic;
   margin-top: 0.5rem;
+}
+
+ul {
+  margin: 0.8rem 0;
+  padding: 0 0 0 2rem;
 }
