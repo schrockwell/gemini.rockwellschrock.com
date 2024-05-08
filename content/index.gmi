@@ -22,7 +22,7 @@
 
 ### Socials
 
-=> https://mastodon.social/@schrockwell 🐘 @schrockwell@mastodon.social on Mastodon
+=> https://mastodon.social/@schrockwell 🐘 schrockwell on Mastodon
 => https://youtube.com/schrockwell 🎥 schrockwell on YouTube
 => https://github.com/schrockwell 🐙 schrockwell on GitHub
 => https://www.printables.com/social/229042-schrockwell/models 🖨 schrockwell on Printables
@@ -33,12 +33,3 @@
 => gemini://gmi.schrockwell.com 🏠 Home
 </web>
 => gemini://station.martinrue.com/schrockwell 🛰 schrockwell on Station
-
-<gemini>
-### LEO Orbit
-
-=> gemini://tilde.team/~khuxkm/leo/ LEO Orbit webring
-=> gemini://tilde.team/~khuxkm/leo/next.cgi?gemini%3A%2F%2Fgmi.schrockwell.com ➡️ Next page
-=> gemini://tilde.team/~khuxkm/leo/prev.cgi?gemini%3A%2F%2Fgmi.schrockwell.com ⬅️ Previous page
-=> gemini://tilde.team/~khuxkm/leo/rand.cgi?gemini%3A%2F%2Fgmi.schrockwell.com 🔀 Random page
-</gemini>

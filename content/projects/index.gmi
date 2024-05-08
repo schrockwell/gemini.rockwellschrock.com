@@ -5,7 +5,9 @@ Get on the air from anywhere! · Since 2010
 
 For over a decade, RHR has made amateur radio more accessible than ever. For operators who can't build their own stations because they are limited by cost, age, or location, RHR brings world-class, contest-winning stations to their fingertips.
 
-As the CTO and sole developer of RHR, I have developed and managed the entire stack – from hardware to software, front-end to back-end, infrastructure to deployments.
+As the CTO and sole developer of RHR, I have developed and managed the entire stack – from hardware to software, frontend to backend, infrastructure to deployments.
+
+The backend is a combination of Ruby on Rails and Phoenix, with Vue.js on the frontend. Each of the 40+ remote stations has a Raspberry Pi controlling local hardware via Ruby and Go. WebSockets and WebRTC tie everything together.
 
 => https://www.remotehamradio.com/ Remote Ham Radio
 => images/rhr.png The RHR console
@@ -31,10 +33,6 @@ Back when I started with Elixir and Phoenix, I was still heavily influenced by y
 => https://hex.pm/packages/bodyguard Hex package
 => https://hexdocs.pm/bodyguard/ Hexdocs
 
-### 🌐 schrockwell.com
-You are here · Since 2024
-=> /posts/2024-05-03-new-site.gmi Introductory post
-
 ### 🎙️ Does Not Compute
 A weekly development podcast · 2020-2022
 
@@ -45,6 +43,10 @@ The show is on indefinite hiatus. We'd like to bring it back when we find the mo
 => https://dnc.show/ dnc.show
 => images/dnc1.jpeg Album art
 => images/dnc2.jpeg Recording in-person with Sean Washington at ElixirConf 2019
+
+### 🌐 schrockwell.com
+You are here · Since 2024
+=> /posts/2024-05-03-new-site.gmi Introductory post
 
 ### ✈️ Flying
 Private pilot · Since 2018
@@ -64,7 +66,7 @@ WW1X · Extra Class license · Since 2010
 ### 🌪️ 🚗 Storm Chasing
 2006-2011
 
-I've gone chasing with Silver Lining Tours a couple times, did some chase-cations of my own, and even spent the summer of 2009 interning with the National Severe Storms Laboratory (NSSL) in Norman, OK.
+I've gone chasing with Silver Lining Tours a couple times, did some chasecations of my own, and spent the summer of 2009 interning with the National Severe Storms Laboratory (NSSL) in Norman, OK.
 
 => https://www.schrockwell.com/storm-blog/ The Suck Zone (blog)
 => images/chasing1.jpeg Lightning, 2006
