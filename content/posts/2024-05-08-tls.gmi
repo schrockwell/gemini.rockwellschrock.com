@@ -1,0 +1,193 @@
+# TLS (The Long Slog)
+
+May 8, 2024
+
+I am in the middle of setting up our web application on a new hosting provider, Fly.io.
+
+The app has two types of WebSocket clients: users, who connect via a web browser, and remote sites, which connect via Ruby using the faye-websocket gem.
+
+I'd like to get the staging environment rolled out this week. 
+
+The browser is connecting up fine. The sites should be working now, too, but let me just try it to be sure. You never know.
+
+---
+
+It's 2pm.
+
+> changes the site config to point to the new domain
+
+Hmm... it's not showing up. Let me check the server logs, I probably forgot to set something up.
+
+> pulls up the live server logs
+
+Huh, nothing. Not even a failed connection attempt.
+
+> adds debug code to the connection logic and redeploys the server
+
+Wow, totally blank. Not a peep. Must be something wrong on the client end.
+
+> checks client logs
+
+So it has the correct hostname, and it connects… but then immediately disconnects? 
+
+> adds error handling and debugging code to the client; redeploys
+
+And not even a single error. The connection just dies. WTF?
+
+This will take forever if I have to keep redeploying. Let me point the site to my local machine, instead of the cloud, to shorten the debug cycle.
+
+> spins up the full application stack, opens an ngrok tunnel, and points the site config at ngrok
+
+…that works.
+
+So I know *my* code is working. And I know browsers can connect. The Ruby clients worked just fine on the previous deployment of the app on AWS. So maybe there is something funky with Fly's setup that I don't know about.
+
+Dead-end #1. At least I ruled out the application code.
+
+---
+
+This is starting to smell like a networking issue.
+
+Let's see if they can even talk to each other.
+
+> back on the remote site, tries curling the server
+
+cURL works, so that's good.
+
+> opens the Ruby REPL and tries an HTTPS GET
+
+Nice, that works too. So the network path is good, and HTTPS is working with a valid certificate and all that stuff. But the dang WebSocket still won't stay connected!
+
+Hmmm. This particular remote station is connected to the Internet via Starlink. And I know there is some double-NATting going on there. Maybe that's the issue.
+
+> tries a second site, one with a terrestrial connection
+
+Nope, that's not it.
+
+Sooooo I'm starting to wonder if this is an SSL/TLS thing. Fly only supports a very small subset of TLS ciphers, and requires TLSv1.2+. Maybe OpenSSL just needs to be updated on the client.
+
+> tries upgrading openssl, comparing supported ciphers between the client and server, and overall just making sure all the version match up
+
+Blah, that all looks correct. And I already knew HTTPS works in Ruby, so there's no new information here.
+
+Dead-end #2. By all accounts, the network setup looks fine.
+
+---
+
+Investigating the big picture isn't working, so it's time to break down the problem and start testing individual components.
+
+> in a remote Ruby REPL, tries connecting with a Faye::WebSocket::Client
+
+Yup, that fails, as expected. And while there's no error, there is this "code 1006".
+
+> Googles
+
+"Close Code 1006 is a special code that means the connection was closed abnormally"
+
+…ya don't say.
+
+In the back of my mind, I still suspect OpenSSL is being cranky. Issues between Ruby and OpenSSL have persisted for over a decade. OpenSSL is probably old and out-of-date – I haven't updated the Dockerfile in a while. Let me try it on my local box, which has the latest-and-greatest versions of Ruby and OpenSSL.
+
+> tries it locally
+
+WOW! Same issue. Now THAT is interesting. That common failure eliminates OpenSSL as the culprit, because I'd expect the newest version to work.
+
+The only thing left in common between the two environments is the Ruby application itself.
+
+The faye-websocket gem doesn't have its own TCP client – it relies on the eventmachine gem to open and maintain the TCP connection. So maybe eventmachine needs a bump.
+
+> upgrades eventmachine
+
+No change. Hrm.
+
+Okay, now it's time to REALLY get down to basics.
+
+> asks ChatGPT how to open a TLS connection in Ruby; copies code into REPL
+
+```
+OpenSSL::SSL::SSLError (SSL_connect SYSCALL returned=5 errno=0 state=SSLv3/TLS write client hello)
+```
+
+Well, that's a problem. Even the simplest connection fails. But that error message is not very helpful.
+
+> Googles
+
+There are tons of search results, but very few actual answers, and nothing relevant. It seems like the connection is prematurely closed by the server, before the handshake even completes. But that's all I know.
+
+> tries VERIFY_NONE, tries different HTTPS sites (they all work), tries different Fly sites (none of them work), tries a bunch of other stuff
+
+Drat. No dice.
+
+Now I'm REALLY stumped.
+
+If I can't get this working, that's a show-stopper. I will need a completely new deployment strategy. Maybe a whole new hosting provider.
+
+> makes posts on the Fly community forum, the Elixir Slack, and a private Discord
+
+Let me sleep on it and try again tomorrow with fresh eyes.
+
+> heads to dinner
+
+Dead-end #3. It's 5:30pm.
+
+---
+
+It's 7:30pm. There's a reply in Slack.
+
+> "I had issues with tcp sockets due to the shared v4 IP.  Not sure if that would help, but you could easily rule it out by using the cli to request a static IP."
+
+Ah, good idea. Fly allocates shared IPv4 addresses to new applications, but you can request a static IP.
+
+> gets a static IP
+
+…damn. No luck. I really thought that was going to work.
+
+Okay, but now I'm really, fully invested in this issue again.
+
+I've gone back to basics, but what about the BASICS-basics?
+
+> downloads and installs Wireshark
+
+Time to start squinting at headers.
+
+> performs captures of both Ruby and the web browser
+
+Well, the Ruby connection is immediately closed. I knew that. But this initial handshake packet from the browser is much longer. It contains this extra thing, an "SNI hostname extension". And I can see the app's full hostname in there. 
+
+I wonder…
+
+> Googles
+
+Ah, to do this in Ruby, it's as simple as setting the hostname field on the SSLSocket class. Let me try that.
+
+> tries that
+
+…and there's no error this time!
+
+Okay, calm down. That's progress, to be sure. Now I know this hostname thing is really important. 
+
+That makes some sense. Fly can serve up multiple applications from a single IP, so I assume Fly needs to know the application's hostname to correctly route the connection request. Otherwise, it just gives up and closes the connection, resulting in the cryptic client error.
+
+But faye-websocket is still busted. It must not be be setting the hostname field.
+
+> dives into the faye-websocket source on GitHub
+
+Huh… it actually IS setting the hostname. WTF? I need more visibility into this.
+
+> in the REPL, monkey-patches the Faye::WebSocket::Client class, overriding the start_tls method
+
+Wow, the method isn't being called. It's like it doesn't even exist.
+
+…it does exist, right?
+
+> opens git blame on GitHub
+
+Goddammit. The start_tls method is on the main branch, for sure. But I never upgraded the gem locally. It's still on an older version.
+
+> upgrades faye-websocket
+
+IT CONNECTS!
+
+---
+
+It's 11pm.

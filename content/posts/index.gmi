@@ -2,6 +2,7 @@
 
 ## 2024
 
+=> /posts/2024-05-08-tls.gmi 2024-05-08 [Dev] TLS (The Long Slog)
 => /posts/2024-05-04-backup-vortex.gmi 2024-05-04 [Productivity] The Backup Vortex
 => /posts/2024-05-03-new-site.gmi 2024-05-03 [Gemini] schrockwell.com - Now simulcast to the Web and Geminispace!
 
