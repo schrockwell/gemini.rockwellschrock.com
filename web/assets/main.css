@@ -73,7 +73,7 @@ p:empty {
 }
 
 hr {
-  margin: 2rem 1rem;
+  margin: 3rem 0rem;
   border: 0;
   border-bottom: 1px solid #52525b;
 }
@@ -84,6 +84,7 @@ h1:first-of-type {
 }
 
 pre {
+  margin: 2rem 0;
   background-color: #292524;
   padding: 1rem;
   overflow-x: auto;
@@ -93,6 +94,8 @@ blockquote {
   margin: 2rem 1rem;
   padding: 0 1rem;
   border-left: 1px solid #d97706;
+  font-style: italic;
+  color: #78716c;
 }
 
 footer {
