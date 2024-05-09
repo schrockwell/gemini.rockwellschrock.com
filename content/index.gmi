@@ -1,9 +1,9 @@
 # Rockwell Schrock
 <gemini>
 
-=> /posts Posts
-=> /projects Pursuits
-=> /about About
+=> /posts 📝 Posts
+=> /projects 🔨 Pursuits
+=> /about 🤓 About
 </gemini>
 
 ## Latest Posts
