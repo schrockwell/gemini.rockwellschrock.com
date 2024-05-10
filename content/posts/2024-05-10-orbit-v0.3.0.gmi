@@ -1,0 +1,38 @@
+# Orbit v0.3.0 released
+
+May 10, 2024
+
+=> https://hexdocs.pm/orbit/ Orbit on HexDocs
+
+Do you like Elixir? Phoenix? How about Gemini? If you're within this tiny overlap of interests, then today you're in luck. 
+
+Introducing Orbit, the Phoenix of Gemini.
+
+v0.3.0 is out today. It's really coming together. I've tried to take the latest "lessons learned" from Phoenix and adopt them to Orbit to make it nearly a one-to-one mapping of understanding.
+
+## Some thoughts
+
+A few things have been simplified. I opted to give the app's Endpoint module the dual functionality of serving up the TLS endpoint while also routing requests. Technically, the router could still be split off into a separate module by the developer. But as it stands, the Endpoint is mostly empty, so it might as well get double duty.
+
+I am not 100% sold on the mixing of controller and view modules in the same directory. I get it – they are tightly coupled. Maybe Rails' MVC prescription is too engrained, but I feel like views should have their own home.
+
+I opted to include every status code as individual functions on `Orbit.Request`, instead of only a single `put_status/3` function. Autocomplete makes it much easier to discover the available statuses if they are plain functions.
+
+I just discovered `mix test --cover`, and it's been a godsend. I don't know when this was introduced into Elixir (or Erlang?), but it's so nice not to pull in Coveralls or whatever. Orbit is at 89% coverage – higher soon.
+
+One of the big remaining TODOs is code reloading. I looked at `Phoenix.CodeReloader`, but it's really complicated. I am also trying out the exsync package, which is working well. Maybe I should just roll that in as a dev dependency.
+
+## Next steps
+
+Anyway, I am extremely happy with the current state of Orbit's API. I am intentionally targeting v1.0 with a small surface area, so that inevtiable future enhancements still abide by semver. The current `mix orbit.init` is simple and complete enough to get folks started – without me having to build out really complex generator functionality.
+
+Gemini is simple. Its framework should be, too.
+
+With today's release, Orbit becomes capable enough to start building real applications against it.
+
+More on those later. :)
+
+=> https://hexdocs.pm/orbit/ Orbit docs
+=> https://hexdocs.pm/mix/1.12/Mix.Tasks.Test.html#module-coverage mix test --cover
+=> https://github.com/phoenixframework/phoenix/blob/v1.7.12/lib/phoenix/code_reloader/server.ex Phoenix.CodeReloader.Server source
+=> https://semver.org/ Semantic Versioning (semver)
