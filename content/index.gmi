@@ -23,10 +23,10 @@
 
 ### Socials
 
-=> https://mastodon.social/@schrockwell 🐘 schrockwell on Mastodon
-=> https://youtube.com/schrockwell 🎥 schrockwell on YouTube
-=> https://github.com/schrockwell 🐙 schrockwell on GitHub
-=> https://www.printables.com/social/229042-schrockwell/models 🖨 schrockwell on Printables
+=> https://mastodon.social/@schrockwell 🐘 Mastodon
+=> https://youtube.com/schrockwell 🎥 YouTube
+=> https://github.com/schrockwell 🐙 GitHub
+=> https://www.printables.com/social/229042-schrockwell/models 🖨 Printables
 
 ## Around Geminispace
 
