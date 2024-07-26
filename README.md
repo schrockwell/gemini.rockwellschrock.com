@@ -19,6 +19,8 @@ Requirements:
 
 - Ruby
 - [agate](https://github.com/mbrubeck/agate/releases)
+- fswatch (via Homebrew)
+- imagemagick (via Homebrew)
 
 ```sh
 # Just build the sites
@@ -28,10 +30,14 @@ Requirements:
 ./generate.rb server
 ```
 
-## Deploying
+## Deploying to Gemini
 
 Configure the `gemini` SSH host.
 
 ```sh
 ./publish_gmi.sh
 ```
+
+## Deploying to the Web
+
+Push the `main` branch to GitHub, and the Action will rsync the site to the Web server.

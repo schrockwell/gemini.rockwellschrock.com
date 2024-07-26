@@ -33,4 +33,4 @@
 <web>
 => gemini://gmi.schrockwell.com 🏠 Home
 </web>
-=> gemini://station.martinrue.com/schrockwell 🛰 schrockwell on Station
+=> gemini://station.martinrue.com/schrockwell 🛰 Station
