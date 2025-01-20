@@ -3,6 +3,7 @@
 
 => /posts 📝 Posts
 => /projects 🔨 Pursuits
+=> https://kb.schrockwell.com/ 🧠 KB
 => /about 🤓 About
 </gemini>
 
