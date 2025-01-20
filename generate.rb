@@ -214,7 +214,7 @@ def process_photo(file, input_dir, output_dir)
   out_file = file.gsub(input_dir, output_dir)
 
   FileUtils.mkdir_p(File.dirname(out_file))
-  system("convert '#{file}' -resize 1200x1200\\> -sharpen 0x0.7 '#{out_file}'") or raise("Failed to process image #{file}")
+  system("magick '#{file}' -resize 1200x1200\\> -sharpen 0x0.7 '#{out_file}'") or raise("Failed to process image #{file}")
 end
 
 def build_web_site
